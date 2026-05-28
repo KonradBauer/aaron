@@ -13,7 +13,11 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL ?? '',
+  // serverURL celowo NIE ustawiony. Gdy jest niepusty, Payload dopisuje go do
+  // listy `csrf` (sanitize.js), co aktywuje ścisłą walidację Origin/Sec-Fetch-Site
+  // w extractJWT. Wewnętrzne (server-side) requesty bez tych nagłówków są wtedy
+  // odrzucane → token ignorowany → /api/users/me zwraca user:null → pętla logowania.
+  // Na localhost serverURL jest pusty (csrf=[]), więc auth działa — tu replikujemy to.
   admin: {
     user: Users.slug,
     importMap: {
