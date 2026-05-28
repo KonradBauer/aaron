@@ -1,10 +1,25 @@
 import type { GlobalConfig } from 'payload'
+import { revalidatePath } from 'next/cache'
 
 export const SiteSettings: GlobalConfig = {
   slug: 'site-settings',
   label: 'Kontakt',
   admin: {
     group: 'Treści',
+  },
+  hooks: {
+    // Strony frontu są statycznie prerenderowane w build (direct DB call, nie fetch),
+    // więc bez tego zmiany w CMS nie pojawiają się w prod do następnego rebuildu.
+    // revalidatePath('/', 'layout') odświeża wszystkie trasy pod root layoutem.
+    afterChange: [
+      ({ req }) => {
+        try {
+          revalidatePath('/', 'layout')
+        } catch (err) {
+          req.payload.logger.error({ err }, 'revalidatePath failed after SiteSettings change')
+        }
+      },
+    ],
   },
   fields: [
     {
