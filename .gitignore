@@ -20,8 +20,11 @@
 /build
 
 # misc
+compound-engineering-plugin-main/
 .DS_Store
 *.pem
+.claude
+
 
 # debug
 npm-debug.log*
