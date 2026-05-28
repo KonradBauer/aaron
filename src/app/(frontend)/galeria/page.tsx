@@ -5,7 +5,8 @@ import PageHero from '@/components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Galeria',
-  description: 'Galeria zdjec domu pogrzebowego Aaron - sala pozegnan, wyposazenie, lokalizacje.',
+  description: 'Galeria zdjęć domu pogrzebowego Aaron — sala pożegnań, wyposażenie, lokalizacje.',
+  alternates: { canonical: '/galeria' },
 }
 
 const galleryImages = [

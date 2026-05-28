@@ -7,7 +7,8 @@ import { services } from '@/data/services'
 export const metadata: Metadata = {
   title: 'Oferta',
   description:
-    'Pelna oferta domu pogrzebowego Aaron - organizacja pogrzebów, sala pozegnan, kwiaty, oprawa muzyczna i wiele wiecej.',
+    'Pełna oferta domu pogrzebowego Aaron — organizacja pogrzebów, sala pożegnań, kwiaty, oprawa muzyczna i wiele więcej.',
+  alternates: { canonical: '/oferta' },
 }
 
 export default function OfertaPage() {

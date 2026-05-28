@@ -4,7 +4,8 @@ import PageHero from '@/components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Kontakt',
-  description: 'Skontaktuj sie z domem pogrzebowym Aaron. Dwie lokalizacje, dostepni 24 godziny na dobe.',
+  description: 'Skontaktuj się z domem pogrzebowym Aaron. Dwie lokalizacje, dostępni 24 godziny na dobę.',
+  alternates: { canonical: '/kontakt' },
 }
 
 const PHONE = '+48 000 000 000'

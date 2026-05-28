@@ -1,11 +1,27 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
 import React from 'react'
 
+import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import './styles.css'
 
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+})
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-inter',
+})
+
 export const metadata: Metadata = {
+  metadataBase: new URL('https://twoja-domena.pl'),
   title: {
     default: 'Aaron Dom Pogrzebowy',
     template: '%s | Aaron Dom Pogrzebowy',
@@ -26,10 +42,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl">
+    <html lang="pl" className={`${cormorantGaramond.variable} ${inter.variable}`}>
+      <head>
+        <LocalBusinessSchema />
+      </head>
       <body>
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-black focus:text-cream focus:px-4 focus:py-2 focus:text-sm">
+          Przejdź do treści
+        </a>
         <Header />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
       </body>
     </html>

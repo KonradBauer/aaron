@@ -1,5 +1,7 @@
 ﻿import Link from 'next/link'
 
+const BASE = 'https://twoja-domena.pl'
+
 interface BreadcrumbItem {
   label: string
   href?: string
@@ -12,8 +14,28 @@ interface PageHeroProps {
 }
 
 export default function PageHero({ title, subtitle, breadcrumb }: PageHeroProps) {
+  const breadcrumbSchema =
+    breadcrumb && breadcrumb.length > 0
+      ? JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Strona główna', item: BASE },
+            ...breadcrumb.map((item, i) => ({
+              '@type': 'ListItem',
+              position: i + 2,
+              name: item.label,
+              ...(item.href ? { item: `${BASE}${item.href}` } : {}),
+            })),
+          ],
+        })
+      : null
+
   return (
     <section className="relative overflow-hidden bg-surface pt-[calc(var(--header-height)+72px)] pb-[72px] border-b border-[var(--color-border)]">
+      {breadcrumbSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: breadcrumbSchema }} />
+      )}
       {/* gradient overlay */}
       <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(135deg,rgba(30,58,47,0.3)_0%,transparent_60%)]" />
 

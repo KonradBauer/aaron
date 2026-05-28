@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import JsonLd from '@/components/JsonLd'
 import PageHero from '@/components/PageHero'
 
 export const metadata: Metadata = {
-  title: 'Krok po kroku - Co zrobic po smierci bliskiej osoby',
-  description: 'Praktyczny poradnik - co zrobic po smierci bliskiej osoby. Krok po kroku przez wszystkie formalnosci.',
+  title: 'Krok po kroku — Co zrobić po śmierci bliskiej osoby',
+  description: 'Praktyczny poradnik — co zrobić po śmierci bliskiej osoby. Krok po kroku przez wszystkie formalności.',
+  alternates: { canonical: '/krok-po-kroku' },
 }
 
 const PHONE_HREF = 'tel:+48000000000'
@@ -49,12 +51,26 @@ const steps = [
   },
 ]
 
+const howToSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Co zrobić po śmierci bliskiej osoby',
+  description: 'Praktyczny poradnik krok po kroku przez wszystkie formalności po śmierci bliskiej osoby.',
+  step: steps.map((s) => ({
+    '@type': 'HowToStep',
+    position: parseInt(s.num, 10),
+    name: s.title,
+    text: s.desc,
+  })),
+})
+
 export default function KrokPoKrokuPage() {
   return (
     <>
+      <JsonLd json={howToSchema} />
       <PageHero
         title="Krok po kroku"
-        subtitle="Co zrobic po smierci bliskiej osoby - praktyczny przewodnik przez wszystkie formalnosci."
+        subtitle="Co zrobić po śmierci bliskiej osoby — praktyczny przewodnik przez wszystkie formalności."
         breadcrumb={[{ label: 'Krok po kroku' }]}
       />
 

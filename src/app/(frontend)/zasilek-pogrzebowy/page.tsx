@@ -1,20 +1,54 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 
+import JsonLd from '@/components/JsonLd'
 import PageHero from '@/components/PageHero'
 
 export const metadata: Metadata = {
   title: 'Zasiłek pogrzebowy',
   description:
-    'Informacje o zasiłku pogrzebowym - komu przysługuje, jak złożyć wniosek, jakie dokumenty są potrzebne.',
+    'Informacje o zasiłku pogrzebowym — komu przysługuje, jak złożyć wniosek, jakie dokumenty są potrzebne.',
+  alternates: { canonical: '/zasilek-pogrzebowy' },
 }
 
 const PHONE_HREF = 'tel:+48000000000'
 const PHONE = '+48 000 000 000'
 
+const faqSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Komu przysługuje zasiłek pogrzebowy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zasiłek pogrzebowy przysługuje osobie, która pokryła koszty pogrzebu ubezpieczonego, osoby pobierającej emeryturę lub rentę z ZUS/KRUS, członka rodziny ubezpieczonego lub emeryta/rencisty.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ile wynosi zasiłek pogrzebowy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zasiłek pogrzebowy wynosi 4 636 zł (200% przeciętnego miesięcznego wynagrodzenia). Kwota może ulec zmianie — sprawdź aktualną wartość na stronie ZUS.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Jak długo można złożyć wniosek o zasiłek pogrzebowy?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Wniosek o zasiłek pogrzebowy należy złożyć nie później niż w ciągu 12 miesięcy od dnia śmierci osoby, po której zasiłek przysługuje.',
+      },
+    },
+  ],
+})
+
 export default function ZasilekPogrzebowyPage() {
   return (
     <>
+      <JsonLd json={faqSchema} />
       <PageHero
         title="Zasiłek pogrzebowy"
         subtitle="Dowiedz się, komu przysługuje zasiłek pogrzebowy i jak złożyć wniosek. Chętnie pomożemy w formalnościach."

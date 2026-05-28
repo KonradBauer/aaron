@@ -7,7 +7,8 @@ import ServiceLayout from '@/components/ServiceLayout'
 export const metadata: Metadata = {
   title: 'Profesjonalna tanatokosmetyka',
   description:
-    'Profesjonalna tanatokosmetyka w domu pogrzebowym Aaron - godne przygotowanie ciała do ostatniego pożegnania.',
+    'Profesjonalna tanatokosmetyka w domu pogrzebowym Aaron — godne przygotowanie ciała do ostatniego pożegnania.',
+  alternates: { canonical: '/tanatokosmetyka' },
 }
 
 export default function TanatokosmetykaPage() {

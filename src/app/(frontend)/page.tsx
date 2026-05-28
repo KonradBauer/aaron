@@ -5,9 +5,10 @@ import Link from 'next/link'
 import { services } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: 'Aaron Dom Pogrzebowy - Profesjonalna obsluga pogrzebowa 24h',
+  title: 'Aaron Dom Pogrzebowy - Profesjonalna obsługa pogrzebowa 24h',
   description:
-    'Dom pogrzebowy Aaron - godna i profesjonalna obsluga pogrzebowa. Organizacja pogrzebów, sala pozegnan, tanatokosmetyka. Dostepni 24 godziny na dobe.',
+    'Dom pogrzebowy Aaron - godna i profesjonalna obsługa pogrzebowa. Organizacja pogrzebów, sala pożegnań, tanatokosmetyka. Dostępni 24 godziny na dobę.',
+  alternates: { canonical: '/' },
 }
 
 const PHONE_HREF = 'tel:+48000000000'
@@ -23,7 +24,7 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Sekcja glówna">
         <Image
           src={HERO_IMG}
-          alt=""
+          alt="Aaron Dom Pogrzebowy — sala pożegnań"
           fill
           className="object-cover object-center"
           priority
@@ -35,7 +36,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-[var(--container)] mx-auto px-6 pt-[calc(var(--header-height)+40px)] pb-20 w-full flex flex-col items-start">
           <span className="text-[0.75rem] font-medium tracking-[0.25em] uppercase text-gold mb-5">Dom Pogrzebowy</span>
           <h1 className="font-heading font-light tracking-[0.03em] text-cream leading-[1.05] text-[clamp(3rem,7vw,6rem)] mb-2">
-            Aaron
+            Aaron{' '}
             <strong className="font-semibold block">Z godnością i troską.</strong>
           </h1>
           <div className="w-[60px] h-[1px] bg-gold my-7" />
