@@ -10,6 +10,9 @@ services:
     env_file: .env
     environment:
       NODE_ENV: production
+      # Runtime serverURL — runner stage nie dziedziczy ENV z build stage,
+      # a build arg nie trafia do runtime. Bez tego serverURL='' w runtime.
+      NEXT_PUBLIC_SERVER_URL: http://157.173.96.140:8976
     depends_on:
       mongo:
         condition: service_healthy
