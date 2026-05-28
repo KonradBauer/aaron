@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -22,7 +22,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Sekcja glówna">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Sekcja główna">
         <Image
           src={HERO_IMG}
           alt="Aaron Dom Pogrzebowy — sala pożegnań"
@@ -42,10 +42,10 @@ export default async function HomePage() {
           </h1>
           <div className="w-[60px] h-[1px] bg-gold my-7" />
           <p className="font-heading font-light italic text-text text-[clamp(1.125rem,2.5vw,1.5rem)] max-w-[560px] leading-[1.5] mb-10">
-            Towarzyszymy rodzinom w najtrudniejszych chwilach - profesjonalnie, dyskretnie i z najwyzsza troską.
+            Towarzyszymy rodzinom w najtrudniejszych chwilach - profesjonalnie, dyskretnie i z najwyższą troską.
           </p>
           <div className="flex items-center gap-4 flex-wrap">
-            <a href={PHONE_HREF} className="btn btn--gold">Zadzwon - dostepni 24h</a>
+            <a href={PHONE_HREF} className="btn btn--gold">Zadzwoń — dostępni 24h</a>
             <Link href="/oferta" className="btn btn--outline">Nasze usługi</Link>
           </div>
         </div>
@@ -57,23 +57,23 @@ export default async function HomePage() {
           <div className="flex flex-col gap-6">
             <span className="section-label">O nas</span>
             <h2 id="about-heading" className="font-heading font-normal text-cream tracking-[0.02em] leading-[1.15] text-[clamp(2rem,4vw,3rem)]">
-              Profesjonalizm i empatia w kazdej chwili
+              Profesjonalizm i empatia w każdej chwili
             </h2>
             <p className="text-[0.9375rem] leading-[1.75] text-text-muted">
-              Dom Pogrzebowy Aaron to firma z wieloletnia tradycja i doswiadczeniem w organizacji ceremonii pogrzebowych.
-              Naszym priorytetem jest godne i profesjonalne pozegnanie bliskiej osoby, przy jednoczesnym wsparciu
-              rodziny na kazdym etapie - od pierwszego kontaktu az po ceremonie.
+              Dom Pogrzebowy Aaron to firma z wieloletnią tradycją i doświadczeniem w organizacji ceremonii pogrzebowych.
+              Naszym priorytetem jest godne i profesjonalne pożegnanie bliskiej osoby, przy jednoczesnym wsparciu
+              rodziny na każdym etapie — od pierwszego kontaktu aż po ceremonię.
             </p>
             <p className="text-[0.9375rem] leading-[1.75] text-text-muted">
-              Rozumiemy, ze kazde pozegnanie jest wyjatkowe. Dlatego do kazdej rodziny podchodzimy indywidualnie,
-              sluchajac jej potrzeb i dostosowujac kazdy szczegol do oczekiwan i zyczenia bliskich.
+              Rozumiemy, ze każde pożegnanie jest wyjątkowe. Dlatego do każdej rodziny podchodzimy indywidualnie,
+              słuchając jej potrzeb i dostosowując każdy szczegół do oczekiwań i życzenia bliskich.
             </p>
             <ul className="flex flex-col gap-4">
               {[
-                'Dostepni 24 godziny na dobe, 7 dni w tygodniu',
+                'Dostępni 24 godziny na dobę, 7 dni w tygodniu',
                 'Dwie wygodne lokalizacje',
                 'Mobilne biuro - przyjeżdżamy do Ciebie',
-                'Pelna obsluga formalna',
+                'Pełna obsługa formalna',
               ].map((v) => (
                 <li key={v} className="flex items-start gap-4">
                   <span className="w-[6px] h-[6px] bg-gold rounded-full flex-shrink-0 mt-[7px]" />
@@ -82,7 +82,7 @@ export default async function HomePage() {
               ))}
             </ul>
             <div>
-              <Link href="/kontakt" className="btn btn--outline-gold">Skontaktuj sie z nami</Link>
+              <Link href="/kontakt" className="btn btn--outline-gold">Skontaktuj się z nami</Link>
             </div>
           </div>
 
@@ -105,10 +105,10 @@ export default async function HomePage() {
         <div className="max-w-[var(--container)] mx-auto px-6 text-center mb-16">
           <span className="section-label">Nasze usługi</span>
           <h2 id="services-heading" className="font-heading font-normal text-cream tracking-[0.02em] text-[clamp(1.75rem,3.5vw,2.75rem)]">
-            Kompleksowa obsluga pogrzebowa
+            Kompleksowa obsługa pogrzebowa
           </h2>
           <p className="mt-4 text-[0.9375rem] text-text-muted max-w-[500px] mx-auto leading-[1.65]">
-            Oferujemy pelen zakres uslug pogrzebowych - zadbamy o kazdy szczegol, bys mógł poswiecic czas rodzinie.
+            Oferujemy pełen zakres usług pogrzebowych — zadbamy o każdy szczegół, byś mógł poświęcić czas rodzinie.
           </p>
         </div>
 
@@ -127,7 +127,7 @@ export default async function HomePage() {
                 {service.title}
               </h3>
               <p className="text-[0.875rem] text-text-muted leading-relaxed flex-1">{service.shortDesc}</p>
-              <span className="text-[0.75rem] text-gold mt-2 tracking-[0.1em] uppercase">Dowiedz sie wiecej →</span>
+              <span className="text-[0.75rem] text-gold mt-2 tracking-[0.1em] uppercase">Dowiedz się więcej →</span>
             </Link>
           ))}
         </div>
@@ -143,10 +143,10 @@ export default async function HomePage() {
         <div className="relative max-w-[var(--container)] mx-auto px-6 flex items-center justify-between gap-10 flex-wrap max-[600px]:flex-col max-[600px]:items-start">
           <div className="flex flex-col gap-2">
             <h2 className="font-heading font-normal text-cream tracking-[0.02em] text-[clamp(1.5rem,3vw,2.25rem)]">
-              Jestesmy dostepni dla Ciebie zawsze
+              Jesteśmy dostępni dla Ciebie zawsze
             </h2>
             <p className="text-[0.9375rem] text-cream/65">
-              Telefon czynny 24 godziny na dobe, 7 dni w tygodniu. Przyjedziemy do Ciebie.
+              Telefon czynny 24 godziny na dobę, 7 dni w tygodniu. Przyjedziemy do Ciebie.
             </p>
           </div>
           <a href={PHONE_HREF} className="btn btn--gold">{PHONE}</a>

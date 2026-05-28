@@ -15,7 +15,7 @@ export const services: Service[] = [
     slug: 'sala-pozegnan',
     title: 'Sala pożegnań',
     shortDesc: 'Godne i spokojne miejsce ostatniego pożegnania bliskiej osoby.',
-    imageUrl: unsplash('photo-1618160702438-9b02ab6515c9'),
+    imageUrl: unsplash('photo-1476514525535-07fb3b4ae5f1'),
     description: [
       'Nasza sala pożegnań to przestrzeń stworzona z myślą o godnym, spokojnym i intymnym pożegnaniu bliskiej osoby. Zadbaliśmy o każdy detal wystroju, by rodzina mogła skoncentrować się na przeżywaniu tej wyjątkowej chwili.',
       'Sala wyposażona jest w klimatyzację, dyskretne oświetlenie oraz system nagłośnienia, który umożliwia odtworzenie muzyki zgodnej z życzeniem rodziny. Dysponujemy również osobnym pomieszczeniem dla dzieci i osób potrzebujących chwili wytchnienia.',
