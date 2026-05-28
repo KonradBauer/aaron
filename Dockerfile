@@ -5,7 +5,7 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-RUN corepack enable pnpm && pnpm install --frozen-lockfile
+RUN corepack enable && corepack prepare pnpm@10.11.0 --activate && pnpm install --frozen-lockfile
 
 # ─── builder ────────────────────────────────────────────────────────────────
 FROM base AS builder
@@ -19,7 +19,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV DATABASE_URL=mongodb://localhost:27017/build-placeholder
 ENV PAYLOAD_SECRET=build-placeholder-not-used-in-production
 
-RUN corepack enable pnpm && pnpm generate:importmap && pnpm build
+RUN corepack enable && corepack prepare pnpm@10.11.0 --activate && pnpm generate:importmap && pnpm build
 
 # ─── runner ─────────────────────────────────────────────────────────────────
 FROM base AS runner
