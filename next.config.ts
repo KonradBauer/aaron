@@ -8,9 +8,13 @@ const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     localPatterns: [
       { pathname: '/api/media/file/**' },
       { pathname: '/**' },
+    ],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
   webpack: (webpackConfig) => {

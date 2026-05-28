@@ -52,8 +52,6 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="flex items-center gap-1 flex-1 justify-center max-[960px]:hidden" aria-label="Nawigacja główna">
-            <Link href="/" className={navLinkCls}>Strona główna</Link>
-
             {/* Oferta dropdown — pt-2 bridge eliminuje gap między linkiem a menu */}
             <div className="relative group">
               <Link href="/oferta" className={`${navLinkCls} flex items-center gap-1`}>
@@ -115,14 +113,6 @@ export default function Header() {
         aria-hidden={!mobileOpen}
       >
         <div className="pt-[calc(var(--header-height)+16px)] pb-10 px-6 min-h-full flex flex-col">
-          <Link
-            href="/"
-            className="flex items-center py-[18px] font-heading text-2xl font-normal tracking-[0.03em] text-cream border-b border-[var(--color-border-subtle)] hover:text-gold transition-colors leading-none"
-            onClick={closeMobile}
-          >
-            Strona główna
-          </Link>
-
           <button
             className="flex items-center justify-between py-[18px] font-heading text-2xl font-normal tracking-[0.03em] text-cream hover:text-gold transition-colors leading-none bg-transparent cursor-pointer w-full text-left"
             style={{ border: 'none', borderBottom: '1px solid var(--color-border-subtle)' }}

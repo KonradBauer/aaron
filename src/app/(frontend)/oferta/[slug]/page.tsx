@@ -34,6 +34,7 @@ export default async function ServicePage({ params }: Props) {
       title={service.title}
       description={service.description}
       features={service.features}
+      imageUrl={service.imageUrl}
     />
   )
 }

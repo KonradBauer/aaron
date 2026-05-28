@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { services } from '@/data/services'
@@ -12,21 +13,24 @@ export const metadata: Metadata = {
 const PHONE_HREF = 'tel:+48000000000'
 const PHONE = '+48 000 000 000'
 
+const HERO_IMG = 'https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?w=1920&q=85&fit=crop'
+const ABOUT_IMG = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=80&fit=crop'
+
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Sekcja glówna">
-        {/* background gradient placeholder for hero image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            background:
-              'linear-gradient(160deg, rgba(30,58,47,0.6) 0%, rgba(13,13,13,0.85) 50%, rgba(13,13,13,0.97) 100%), #1e3a2f',
-          }}
+        <Image
+          src={HERO_IMG}
+          alt=""
+          fill
+          className="object-cover object-center"
+          priority
+          sizes="100vw"
         />
-        {/* bottom fade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent" />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
 
         <div className="relative z-10 max-w-[var(--container)] mx-auto px-6 pt-[calc(var(--header-height)+40px)] pb-20 w-full flex flex-col items-start">
           <span className="text-[0.75rem] font-medium tracking-[0.25em] uppercase text-gold mb-5">Dom Pogrzebowy</span>
@@ -80,9 +84,15 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Image placeholder */}
-          <div className="relative aspect-[4/5] max-[900px]:aspect-video bg-[linear-gradient(145deg,var(--color-green)_0%,var(--color-black)_100%)] flex items-center justify-center">
-            <span className="text-[0.6875rem] tracking-[0.15em] uppercase text-text-muted">Zdjecie - placeholder</span>
+          {/* About image */}
+          <div className="relative aspect-[4/5] max-[900px]:aspect-video overflow-hidden">
+            <Image
+              src={ABOUT_IMG}
+              alt="Kwiaty - Aaron Dom Pogrzebowy"
+              fill
+              className="object-cover"
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
             <div className="absolute bottom-[-16px] right-[-16px] w-4/5 h-4/5 border border-[var(--color-border)] pointer-events-none max-[900px]:hidden" />
           </div>
         </div>
@@ -100,7 +110,6 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* 3-column grid — gap-px with bg creates 1px separator */}
         <div className="max-w-[var(--container)] mx-auto px-6 grid grid-cols-3 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1 gap-px bg-[var(--color-border-subtle)]">
           {services.map((service, index) => (
             <Link
@@ -108,7 +117,6 @@ export default function HomePage() {
               href={`/oferta/${service.slug}`}
               className="bg-surface flex flex-col gap-3 px-8 py-10 relative overflow-hidden group hover:bg-surface-2 transition-colors duration-[250ms]"
             >
-              {/* hover gold bar replaces ::before pseudo-element */}
               <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-[250ms] origin-left" />
               <span className="text-[0.6875rem] font-medium tracking-[0.15em] text-gold opacity-60">
                 {String(index + 1).padStart(2, '0')}
@@ -128,10 +136,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA */}
-      <section
-        className="relative overflow-hidden py-[72px] bg-green"
-        aria-label="Kontakt 24h"
-      >
+      <section className="relative overflow-hidden py-[72px] bg-green" aria-label="Kontakt 24h">
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(90deg,rgba(201,168,76,0.05)_0%,transparent_50%,rgba(201,168,76,0.05)_100%)]" />
         <div className="relative max-w-[var(--container)] mx-auto px-6 flex items-center justify-between gap-10 flex-wrap max-[600px]:flex-col max-[600px]:items-start">
           <div className="flex flex-col gap-2">
