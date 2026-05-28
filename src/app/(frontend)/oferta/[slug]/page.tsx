@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import JsonLd from '@/components/JsonLd'
 import ServiceLayout from '@/components/ServiceLayout'
 import { getService, services } from '@/data/services'
+import { SITE_URL } from '@/lib/site-url'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -39,9 +40,9 @@ export default async function ServicePage({ params }: Props) {
     provider: {
       '@type': 'FuneralHome',
       name: 'Aaron Dom Pogrzebowy',
-      url: 'https://twoja-domena.pl',
+      url: SITE_URL,
     },
-    url: `https://twoja-domena.pl/oferta/${slug}`,
+    url: `${SITE_URL}/oferta/${slug}`,
   })
 
   return (

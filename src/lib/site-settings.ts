@@ -37,7 +37,8 @@ export const getSiteSettings = cache(async (): Promise<SiteSetting> => {
   try {
     const payload = await getPayload({ config })
     return await payload.findGlobal({ slug: 'site-settings' })
-  } catch {
+  } catch (err) {
+    console.error('getSiteSettings: nie udało się pobrać site-settings, używam FALLBACK', err)
     return FALLBACK
   }
 })

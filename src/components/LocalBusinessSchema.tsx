@@ -1,8 +1,10 @@
+import { SITE_URL } from '@/lib/site-url'
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'FuneralHome',
   name: 'Aaron Dom Pogrzebowy',
-  url: 'https://twoja-domena.pl',
+  url: SITE_URL,
   telephone: '+48000000000',
   openingHours: 'Mo-Su 00:00-24:00',
   priceRange: '$$',

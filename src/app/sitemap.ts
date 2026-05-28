@@ -1,8 +1,7 @@
 import type { MetadataRoute } from 'next'
 
 import { services } from '@/data/services'
-
-const BASE = 'https://twoja-domena.pl'
+import { SITE_URL as BASE } from '@/lib/site-url'
 
 const staticPages = [
   { path: '/', priority: 1 as const },

@@ -6,6 +6,7 @@ import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { getSiteSettings, phoneHref } from '@/lib/site-settings'
+import { SITE_URL } from '@/lib/site-url'
 import './styles.css'
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -22,7 +23,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://twoja-domena.pl'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Aaron Dom Pogrzebowy',
     template: '%s | Aaron Dom Pogrzebowy',

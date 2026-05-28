@@ -1,6 +1,6 @@
 ﻿import Link from 'next/link'
 
-const BASE = 'https://twoja-domena.pl'
+import { SITE_URL as BASE } from '@/lib/site-url'
 
 interface BreadcrumbItem {
   label: string
