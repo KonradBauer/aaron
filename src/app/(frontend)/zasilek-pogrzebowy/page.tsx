@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import JsonLd from '@/components/JsonLd'
 import PageHero from '@/components/PageHero'
+import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
   title: 'Zasiłek pogrzebowy',
@@ -10,9 +11,6 @@ export const metadata: Metadata = {
     'Informacje o zasiłku pogrzebowym — komu przysługuje, jak złożyć wniosek, jakie dokumenty są potrzebne.',
   alternates: { canonical: '/zasilek-pogrzebowy' },
 }
-
-const PHONE_HREF = 'tel:+48000000000'
-const PHONE = '+48 000 000 000'
 
 const faqSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -45,7 +43,10 @@ const faqSchema = JSON.stringify({
   ],
 })
 
-export default function ZasilekPogrzebowyPage() {
+export default async function ZasilekPogrzebowyPage() {
+  const settings = await getSiteSettings()
+  const PHONE = settings.phone ?? '+48 000 000 000'
+  const PHONE_HREF = phoneHref(PHONE)
   return (
     <>
       <JsonLd json={faqSchema} />

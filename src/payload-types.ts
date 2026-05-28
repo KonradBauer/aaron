@@ -87,8 +87,12 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'site-settings': SiteSetting;
+  };
+  globalsSelect: {
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -314,6 +318,61 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: string;
+  /**
+   * Numer wyświetlany w nagłówku, stopce i na wszystkich stronach.
+   */
+  phone: string;
+  locations?:
+    | {
+        label: string;
+        name: string;
+        street: string;
+        postalCode?: string | null;
+        city: string;
+        hours?: string | null;
+        /**
+         * Np. 52.2297 — skopiuj z Google Maps (prawy klik → "Co tu jest?")
+         */
+        lat?: number | null;
+        /**
+         * Np. 21.0122
+         */
+        lng?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  phone?: T;
+  locations?:
+    | T
+    | {
+        label?: T;
+        name?: T;
+        street?: T;
+        postalCode?: T;
+        city?: T;
+        hours?: T;
+        lat?: T;
+        lng?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

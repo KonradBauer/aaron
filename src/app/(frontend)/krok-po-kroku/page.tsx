@@ -3,15 +3,13 @@ import Link from 'next/link'
 
 import JsonLd from '@/components/JsonLd'
 import PageHero from '@/components/PageHero'
+import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
   title: 'Krok po kroku — Co zrobić po śmierci bliskiej osoby',
   description: 'Praktyczny poradnik — co zrobić po śmierci bliskiej osoby. Krok po kroku przez wszystkie formalności.',
   alternates: { canonical: '/krok-po-kroku' },
 }
-
-const PHONE_HREF = 'tel:+48000000000'
-const PHONE = '+48 000 000 000'
 
 const steps = [
   {
@@ -64,7 +62,10 @@ const howToSchema = JSON.stringify({
   })),
 })
 
-export default function KrokPoKrokuPage() {
+export default async function KrokPoKrokuPage() {
+  const settings = await getSiteSettings()
+  const PHONE = settings.phone ?? '+48 000 000 000'
+  const PHONE_HREF = phoneHref(PHONE)
   return (
     <>
       <JsonLd json={howToSchema} />

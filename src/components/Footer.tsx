@@ -2,9 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import { services } from '@/data/services'
-
-const PHONE = '+48 000 000 000'
-const PHONE_HREF = 'tel:+48000000000'
+import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 const infoLinks = [
   { label: 'Zasiłek pogrzebowy', href: '/zasilek-pogrzebowy' },
@@ -17,7 +15,11 @@ const infoLinks = [
 const colLinkCls = 'text-[0.875rem] text-text-muted hover:text-cream transition-colors duration-[250ms]'
 const colTitleCls = 'text-[0.6875rem] font-semibold tracking-[0.2em] uppercase text-gold mb-1'
 
-export default function Footer() {
+export default async function Footer() {
+  const settings = await getSiteSettings()
+  const phone = settings.phone ?? '+48 000 000 000'
+  const PHONE_HREF = phoneHref(phone)
+  const locations = settings.locations ?? []
   const firstSix = services.slice(0, 6)
   const secondSix = services.slice(6)
 
@@ -67,16 +69,14 @@ export default function Footer() {
           <span className={`${colTitleCls} mt-4`}>Kontakt</span>
           <div className="flex flex-col gap-1">
             <span className="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-text-muted">Telefon 24h</span>
-            <a href={PHONE_HREF} className="text-[0.9375rem] text-text hover:text-gold transition-colors duration-[250ms]">{PHONE}</a>
+            <a href={PHONE_HREF} className="text-[0.9375rem] text-text hover:text-gold transition-colors duration-[250ms]">{phone}</a>
           </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-text-muted">Lokalizacja 1</span>
-            <span className="text-[0.9375rem] text-text">ul. Przykładowa 1, Miasto</span>
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-text-muted">Lokalizacja 2</span>
-            <span className="text-[0.9375rem] text-text">ul. Przykładowa 2, Miasto</span>
-          </div>
+          {locations.map((loc) => (
+            <div key={loc.id ?? loc.label} className="flex flex-col gap-1">
+              <span className="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-text-muted">{loc.label}</span>
+              <span className="text-[0.9375rem] text-text">{loc.street}, {loc.city}</span>
+            </div>
+          ))}
         </div>
       </div>
 

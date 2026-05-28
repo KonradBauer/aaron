@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { services } from '@/data/services'
+import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
   title: 'Aaron Dom Pogrzebowy - Profesjonalna obsługa pogrzebowa 24h',
@@ -11,13 +12,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-const PHONE_HREF = 'tel:+48000000000'
-const PHONE = '+48 000 000 000'
-
 const HERO_IMG = 'https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?w=1920&q=85&fit=crop'
 const ABOUT_IMG = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=80&fit=crop'
 
-export default function HomePage() {
+export default async function HomePage() {
+  const settings = await getSiteSettings()
+  const PHONE = settings.phone ?? '+48 000 000 000'
+  const PHONE_HREF = phoneHref(PHONE)
   return (
     <>
       {/* Hero */}

@@ -6,9 +6,6 @@ import { useEffect, useState } from 'react'
 
 import { services } from '@/data/services'
 
-const PHONE = '+48 000 000 000'
-const PHONE_HREF = 'tel:+48000000000'
-
 const navLinks = [
   { label: 'Kontakt', href: '/kontakt' },
   { label: 'Zasiłek pogrzebowy', href: '/zasilek-pogrzebowy' },
@@ -20,7 +17,13 @@ const navLinks = [
 const navLinkCls =
   'text-[0.8rem] max-[1100px]:text-[0.75rem] font-normal tracking-[0.1em] uppercase text-text px-3 max-[1100px]:px-2 py-2 whitespace-nowrap transition-colors duration-[250ms] hover:text-gold'
 
-export default function Header() {
+interface Props {
+  phone: string
+  phoneHref: string
+}
+
+export default function Header({ phone, phoneHref: PHONE_HREF }: Props) {
+  const PHONE = phone
   const [mobileOpen, setMobileOpen] = useState(false)
   const [ofertaOpen, setOfertaOpen] = useState(false)
 

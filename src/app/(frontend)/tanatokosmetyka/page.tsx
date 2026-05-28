@@ -15,7 +15,7 @@ export default function TanatokosmetykaPage() {
   return (
     <ServiceLayout
       title="Profesjonalna tanatokosmetyka"
-      imageUrl="https://images.unsplash.com/photo-1487530811015-780780e82df5?w=1200&q=80&fit=crop"
+      imageUrl="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=1200&q=80&fit=crop"
       description={[
         'Tanatokosmetyka to profesjonalne przygotowanie ciała osoby zmarłej do ceremonii pogrzebowej. Nasi certyfikowani specjaliści zadbają o godny i spokojny wygląd bliskiej osoby, tak by ostatnie pożegnanie było jak najbardziej godne i wzruszające.',
         'Usługa obejmuje pełną pielęgnację i przygotowanie kosmetyczne - mycie, czesanie, delikatny makijaż oraz ubieranie zgodnie z życzeniami rodziny. Pracujemy z najwyższą troską i szacunkiem, traktując każdą osobę z godnością.',

@@ -5,6 +5,7 @@ import React from 'react'
 import LocalBusinessSchema from '@/components/LocalBusinessSchema'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 import './styles.css'
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -40,7 +41,10 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSiteSettings()
+  const phone = settings.phone ?? '+48 000 000 000'
+
   return (
     <html lang="pl" className={`${cormorantGaramond.variable} ${inter.variable}`}>
       <head>
@@ -50,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-black focus:text-cream focus:px-4 focus:py-2 focus:text-sm">
           Przejdź do treści
         </a>
-        <Header />
+        <Header phone={phone} phoneHref={phoneHref(phone)} />
         <main id="main">{children}</main>
         <Footer />
       </body>
