@@ -19,6 +19,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV DATABASE_URL=mongodb://localhost:27017/build-placeholder
 ENV PAYLOAD_SECRET=build-placeholder-not-used-in-production
 
+# NEXT_PUBLIC_* vars are baked into the client bundle at build time.
+ARG NEXT_PUBLIC_SERVER_URL=http://157.173.96.140:8976
+ENV NEXT_PUBLIC_SERVER_URL=${NEXT_PUBLIC_SERVER_URL}
+
 RUN corepack enable && corepack prepare pnpm@10.11.0 --activate && pnpm generate:importmap && pnpm build
 
 # ─── runner ─────────────────────────────────────────────────────────────────

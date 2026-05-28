@@ -1,6 +1,9 @@
 services:
   app:
-    build: .
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_SERVER_URL: http://157.173.96.140:8976
     restart: unless-stopped
     ports:
       - "8976:3000"
