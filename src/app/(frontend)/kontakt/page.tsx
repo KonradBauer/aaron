@@ -33,6 +33,8 @@ export default async function KontaktPage() {
         <div className="grid grid-cols-2 max-[900px]:grid-cols-1 gap-8 mb-[var(--section-v)]">
           {locations.map((loc) => {
             const embedUrl = mapEmbedUrl(loc.lat, loc.lng)
+            const locPhone = loc.phone || phone
+            const locPhoneHref = phoneHref(locPhone)
 
             return (
               <div key={loc.id ?? loc.label} className="bg-surface border border-[var(--color-border-subtle)] p-10 max-[560px]:p-7 flex flex-col gap-6">
@@ -50,7 +52,7 @@ export default async function KontaktPage() {
                   </div>
                   <div className="flex gap-4">
                     <span className={detailLabelCls}>Telefon</span>
-                    <a href={PHONE_HREF} className="text-[0.9375rem] text-text hover:text-gold transition-colors">{phone}</a>
+                    <a href={locPhoneHref} className="text-[0.9375rem] text-text hover:text-gold transition-colors">{locPhone}</a>
                   </div>
                   {loc.hours && (
                     <div className="flex gap-4">

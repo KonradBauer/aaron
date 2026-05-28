@@ -336,6 +336,10 @@ export interface SiteSetting {
         street: string;
         postalCode?: string | null;
         city: string;
+        /**
+         * Zostaw puste — użyje globalnego numeru telefonu z góry strony.
+         */
+        phone?: string | null;
         hours?: string | null;
         /**
          * Np. 52.2297 — skopiuj z Google Maps (prawy klik → "Co tu jest?")
@@ -365,6 +369,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         street?: T;
         postalCode?: T;
         city?: T;
+        phone?: T;
         hours?: T;
         lat?: T;
         lng?: T;

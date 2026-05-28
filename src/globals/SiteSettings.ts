@@ -77,6 +77,14 @@ export const SiteSettings: GlobalConfig = {
           required: true,
         },
         {
+          name: 'phone',
+          type: 'text',
+          label: 'Numer telefonu (opcjonalny)',
+          admin: {
+            description: 'Zostaw puste — użyje globalnego numeru telefonu z góry strony.',
+          },
+        },
+        {
           name: 'hours',
           type: 'text',
           label: 'Godziny otwarcia',
