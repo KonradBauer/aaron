@@ -93,19 +93,19 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): edycja `faq[0].answer` → odzwierciedlone w JSON-LD FAQ (dev-docs-review)
 - [x] Weryfikacja: `generate:types`; typecheck + lint czyste; FAQ schema z globala (render w review)
 
-## Unit 8: Finalna weryfikacja, typy, quality gate (M)
+## Unit 8: Finalna weryfikacja, typy, quality gate (M) ✅
 
-- [ ] Weryfikuj `src/payload.config.ts`: 6 nowych globali + `SiteSettings` zarejestrowane
-- [ ] Weryfikuj że żadna strona nie importuje usuniętych pól z `src/data/services.ts`
-- [ ] Weryfikuj że wszystkie 6 globali mają hook revalidate
-- [ ] Uruchom `pnpm generate:types`
-- [ ] Uruchom `pnpm test:int`
-- [ ] Uruchom typecheck
-- [ ] Uruchom `pnpm lint`
-- [ ] Uruchom `pnpm build`
-- [ ] Test (E2E): wszystkie 6 podstron w panelu mają polski label, grupę „Treści", brak zakładki Media w nav
-- [ ] Test (E2E): smoke front — `/`, `/oferta`, `/oferta/[slug]`, `/galeria`, `/krok-po-kroku`, `/tanatokosmetyka`, `/zasilek-pogrzebowy` renderują bez błędów
-- [ ] Weryfikacja: zielony `pnpm test:int`, zero błędów typecheck/lint, `pnpm build` przechodzi, brak `any`/`!` w nowym kodzie
+- [x] Weryfikuj `src/payload.config.ts`: 6 nowych globali + `SiteSettings` zarejestrowane (7 globali)
+- [x] Weryfikuj że żadna strona nie importuje usuniętych pól z `src/data/services.ts` (usunięto martwy `getService`)
+- [x] Weryfikuj że wszystkie 6 globali mają hook revalidate
+- [x] Uruchom `pnpm generate:types`
+- [x] Uruchom `pnpm test:int` → 6/6 zielone
+- [x] Uruchom typecheck → 0 błędów
+- [x] Uruchom `pnpm lint` → 0 errorów (5 pre-existing warningów, żaden nowy)
+- [x] Uruchom `pnpm build` → exit 0, `oferta/[slug]` SSG 13 stron
+- [ ] Test (E2E): wszystkie 6 podstron w panelu mają polski label, grupę „Treści", brak zakładki Media w nav (dev-docs-review)
+- [ ] Test (E2E): smoke front — wszystkie trasy renderują bez błędów (dev-docs-review)
+- [x] Weryfikacja: zielony `test:int`, zero błędów typecheck/lint, `build` przechodzi, brak `any`/`!` w nowym kodzie
 
 ## Źródła
 - Requirements doc: docs/dev-brainstorms/2026-05-29-edycja-tresci-podstron-requirements.md

@@ -1,7 +1,7 @@
 # Kontekst: Edytowalne treści podstron
 
 Branch: `feature/edytowalne-tresci-podstron`
-Ostatnia aktualizacja: 2026-05-29 (Unit 1 ukończony)
+Ostatnia aktualizacja: 2026-05-29 (Unity 1–8 zaimplementowane)
 
 ## Powiązane pliki
 
@@ -72,7 +72,16 @@ Ostatnia aktualizacja: 2026-05-29 (Unit 1 ukończony)
 - `Media.admin.hidden = true` ukrywa z nawigacji; pole upload nadal działa.
 - Testy `resolveMediaUrl`: 5/5 zielone (`tests/int/media-url.int.spec.ts`).
 
-### BLOKER (środowiskowy, pre-existing): ESLint nie działa
+### Unity 2–8 (2026-05-29)
+- 6 globali (strona-glowna, oferta, galeria, krok-po-kroku, tanatokosmetyka, zasilek-pogrzebowy) + per-strona helpery z `cache()` i FALLBACK. Każdy z hookiem revalidate.
+- Wygenerowane typy: `StronaGlowna`, `Oferta`, `Galeria`, `KrokPoKroku`, `Tanatokosmetyka`, `ZasilekPogrzebowy`.
+- Dane seed/fallback w `src/data/{services,gallery,process-steps,zasilek}.ts` — współdzielone przez global (defaultValue) i helper (FALLBACK), bez cyklu importów.
+- Schematy JSON-LD (HowTo, FAQ, Service) budowane z treści globala.
+- `getService` usunięty (martwy kod po przejściu na `getServiceContent`). `<strong>` w zasilek/deadline → plain text.
+- Quality gate: typecheck 0, lint 0 errorów, test:int 6/6, build exit 0 (SSG 13 stron oferty).
+- ROZWIĄZANE: eslint naprawiony osobnym commitem (migracja FlatCompat → natywny flat config Next 16).
+
+### ESLint (rozwiązane)
 - `pnpm lint` wywala `ERR_MODULE_NOT_FOUND: '@eslint/eslintrc'`. Pakiet nieobecny w `package.json` i `node_modules`, a `eslint.config.mjs` importuje go przez `FlatCompat`.
 - NIE wprowadzone przez tę gałąź — config eslint nietknięty.
 - Quality gate „lint" niewykonalny dopóki nie doinstalowane `@eslint/eslintrc` (devDependency). Wymaga zgody usera na instalację.
