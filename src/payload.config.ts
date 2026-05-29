@@ -11,6 +11,7 @@ import { SiteSettings } from './globals/SiteSettings'
 import { HomePage } from './globals/HomePage'
 import { OfertaPage } from './globals/OfertaPage'
 import { GaleriaPage } from './globals/GaleriaPage'
+import { KrokPoKrokuPage } from './globals/KrokPoKrokuPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -34,7 +35,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [SiteSettings, HomePage, OfertaPage, GaleriaPage],
+  globals: [SiteSettings, HomePage, OfertaPage, GaleriaPage, KrokPoKrokuPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

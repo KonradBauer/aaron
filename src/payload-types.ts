@@ -92,12 +92,14 @@ export interface Config {
     'strona-glowna': StronaGlowna;
     oferta: Oferta;
     galeria: Galeria;
+    'krok-po-kroku': KrokPoKroku;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'strona-glowna': StronaGlownaSelect<false> | StronaGlownaSelect<true>;
     oferta: OfertaSelect<false> | OfertaSelect<true>;
     galeria: GaleriaSelect<false> | GaleriaSelect<true>;
+    'krok-po-kroku': KrokPoKrokuSelect<false> | KrokPoKrokuSelect<true>;
   };
   locale: null;
   widgets: {
@@ -487,6 +489,36 @@ export interface Galeria {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "krok-po-kroku".
+ */
+export interface KrokPoKroku {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  /**
+   * Numery kroków (01, 02, …) nadawane są automatycznie według kolejności.
+   */
+  steps?:
+    | {
+        title: string;
+        desc: string;
+        id?: string | null;
+      }[]
+    | null;
+  sidebar?: {
+    reminderLabel?: string | null;
+    reminderHeading?: string | null;
+    reminderText?: string | null;
+    zasilekLabel?: string | null;
+    zasilekText?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -616,6 +648,37 @@ export interface GaleriaSelect<T extends boolean = true> {
         image?: T;
         alt?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "krok-po-kroku_select".
+ */
+export interface KrokPoKrokuSelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  steps?:
+    | T
+    | {
+        title?: T;
+        desc?: T;
+        id?: T;
+      };
+  sidebar?:
+    | T
+    | {
+        reminderLabel?: T;
+        reminderHeading?: T;
+        reminderText?: T;
+        zasilekLabel?: T;
+        zasilekText?: T;
       };
   updatedAt?: T;
   createdAt?: T;

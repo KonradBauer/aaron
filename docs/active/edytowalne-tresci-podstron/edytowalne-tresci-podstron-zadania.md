@@ -59,17 +59,16 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): puste sloty → fallback Unsplash, layout 12 kafelków zachowany (dev-docs-review)
 - [x] Weryfikacja: `generate:types`; typecheck + lint czyste (render wizualnie w review)
 
-## Unit 5: Global Krok po kroku + schema HowTo (M)
+## Unit 5: Global Krok po kroku + schema HowTo (M) ✅
 
-- [ ] Stwórz `src/globals/KrokPoKrokuPage.ts` (slug `krok-po-kroku`, label „Krok po kroku", hook revalidate)
-- [ ] Pola: `intro` {heroTitle, heroSubtitle}; `steps` array `minRows:7, maxRows:7`, item {title, desc}; `sidebar` {reminderLabel, reminderHeading, reminderText, zasilekLabel, zasilekText}
-- [ ] Stwórz `src/lib/krok-po-kroku.ts`: `getKrokContent()` + FALLBACK
-- [ ] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/krok-po-kroku/page.tsx` (numer kroku z indeksu, `howToSchema` z globala)
-- [ ] `pnpm generate:types`
-- [ ] Test (E2E): edycja `steps[2].title` → `/krok-po-kroku` pokazuje nowy tytuł i numer „03"
-- [ ] Test (E2E): locked rows — brak add/remove kroków
-- [ ] Test (Unit, opcjonalnie): builder HowTo z 7 kroków daje 7 `HowToStep` z poprawnymi `position`
-- [ ] Weryfikacja: `generate:types`; strona i JSON-LD odzwierciedlają treść globala; typecheck czysty
+- [x] Stwórz `src/globals/KrokPoKrokuPage.ts` (slug `krok-po-kroku`, label „Krok po kroku", hook revalidate)
+- [x] Pola: `intro` {heroTitle, heroSubtitle}; `steps` array `minRows:7, maxRows:7`, item {title, desc}; `sidebar` {reminderLabel, reminderHeading, reminderText, zasilekLabel, zasilekText}
+- [x] Stwórz `src/data/process-steps.ts` (steps + sidebar defaults) + `src/lib/krok-po-kroku.ts`: `getKrokContent()` + FALLBACK
+- [x] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/krok-po-kroku/page.tsx` (numer kroku z indeksu, `howToSchema` z globala)
+- [x] `pnpm generate:types` (typ: `KrokPoKroku`)
+- [ ] Test (E2E): edycja `steps[2].title` → `/krok-po-kroku` pokazuje nowy tytuł i numer „03" (dev-docs-review)
+- [ ] Test (E2E): locked rows — brak add/remove kroków (dev-docs-review)
+- [x] Weryfikacja: `generate:types`; typecheck + lint czyste; `howToSchema` budowane z `steps` (render w review)
 
 ## Unit 6: Global Tanatokosmetyka + wiring (S)
 
