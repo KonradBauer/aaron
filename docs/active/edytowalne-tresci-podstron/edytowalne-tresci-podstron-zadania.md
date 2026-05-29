@@ -70,16 +70,16 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): locked rows — brak add/remove kroków (dev-docs-review)
 - [x] Weryfikacja: `generate:types`; typecheck + lint czyste; `howToSchema` budowane z `steps` (render w review)
 
-## Unit 6: Global Tanatokosmetyka + wiring (S)
+## Unit 6: Global Tanatokosmetyka + wiring (S) ✅
 
-- [ ] Stwórz `src/globals/TanatokosmetykaPage.ts` (slug `tanatokosmetyka`, label „Tanatokosmetyka", hook revalidate)
-- [ ] Pola: `title`, `image`, `description[]`, `features[]`
-- [ ] Stwórz `src/lib/tanatokosmetyka.ts`: `getTanatoContent()` + FALLBACK
-- [ ] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/tanatokosmetyka/page.tsx` (sync → async, obrazek przez `resolveMediaUrl`)
-- [ ] `pnpm generate:types`
-- [ ] Test (E2E): edycja `title` → `/tanatokosmetyka` pokazuje nowy tytuł w hero i breadcrumb
-- [ ] Test (E2E): puste `image` → fallback Unsplash w ServiceLayout
-- [ ] Weryfikacja: `generate:types`; strona renderuje z globala; typecheck czysty
+- [x] Stwórz `src/globals/TanatokosmetykaPage.ts` (slug `tanatokosmetyka`, label „Tanatokosmetyka", hook revalidate)
+- [x] Pola: `title`, `image`, `description[]`, `features[]`
+- [x] Stwórz `src/lib/tanatokosmetyka.ts`: `getTanatoContent()` + FALLBACK + `TANATO_IMG_FALLBACK`
+- [x] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/tanatokosmetyka/page.tsx` (sync → async, obrazek przez `resolveMediaUrl`; usunięto martwe importy Link/PageHero)
+- [x] `pnpm generate:types` (typ: `Tanatokosmetyka`)
+- [ ] Test (E2E): edycja `title` → `/tanatokosmetyka` pokazuje nowy tytuł w hero i breadcrumb (dev-docs-review)
+- [ ] Test (E2E): puste `image` → fallback Unsplash w ServiceLayout (dev-docs-review)
+- [x] Weryfikacja: `generate:types`; typecheck + lint czyste (render w review)
 
 ## Unit 7: Global Zasiłek pogrzebowy + schema FAQ (L)
 

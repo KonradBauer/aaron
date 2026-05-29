@@ -93,6 +93,7 @@ export interface Config {
     oferta: Oferta;
     galeria: Galeria;
     'krok-po-kroku': KrokPoKroku;
+    tanatokosmetyka: Tanatokosmetyka;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
@@ -100,6 +101,7 @@ export interface Config {
     oferta: OfertaSelect<false> | OfertaSelect<true>;
     galeria: GaleriaSelect<false> | GaleriaSelect<true>;
     'krok-po-kroku': KrokPoKrokuSelect<false> | KrokPoKrokuSelect<true>;
+    tanatokosmetyka: TanatokosmetykaSelect<false> | TanatokosmetykaSelect<true>;
   };
   locale: null;
   widgets: {
@@ -519,6 +521,32 @@ export interface KrokPoKroku {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tanatokosmetyka".
+ */
+export interface Tanatokosmetyka {
+  id: string;
+  title?: string | null;
+  /**
+   * Puste = zostaje zdjęcie domyślne.
+   */
+  image?: (string | null) | Media;
+  description?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -679,6 +707,29 @@ export interface KrokPoKrokuSelect<T extends boolean = true> {
         reminderText?: T;
         zasilekLabel?: T;
         zasilekText?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tanatokosmetyka_select".
+ */
+export interface TanatokosmetykaSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  description?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

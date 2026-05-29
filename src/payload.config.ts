@@ -12,6 +12,7 @@ import { HomePage } from './globals/HomePage'
 import { OfertaPage } from './globals/OfertaPage'
 import { GaleriaPage } from './globals/GaleriaPage'
 import { KrokPoKrokuPage } from './globals/KrokPoKrokuPage'
+import { TanatokosmetykaPage } from './globals/TanatokosmetykaPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +36,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [SiteSettings, HomePage, OfertaPage, GaleriaPage, KrokPoKrokuPage],
+  globals: [SiteSettings, HomePage, OfertaPage, GaleriaPage, KrokPoKrokuPage, TanatokosmetykaPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
