@@ -7,16 +7,16 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 
 ---
 
-## Unit 1: Fundament — ukrycie Media, util obrazka, fetch globala (M)
+## Unit 1: Fundament — ukrycie Media, util obrazka, fetch globala (M) ✅
 
-- [ ] Modyfikuj `src/collections/Media.ts`: dodaj `admin: { hidden: true }`, polski label `alt` („Tekst alternatywny (opis zdjęcia)")
-- [ ] Stwórz `src/lib/media.ts`: `resolveMediaUrl(field: string | { url?: string | null } | null | undefined, fallback: string): string`
-- [ ] Stwórz `src/lib/payload-global.ts`: `fetchGlobal<T>(slug, fallback)` — `cache()` + try/catch + logger, zwraca fallback w catch
-- [ ] Stwórz `tests/int/media-url.int.spec.ts`
-- [ ] Test: `resolveMediaUrl` zwraca `media.url` gdy obiekt z `url`
-- [ ] Test: `resolveMediaUrl` zwraca `fallback` gdy `null`/`undefined`/string-id/obiekt bez `url`
-- [ ] Test (E2E): po zalogowaniu do `/admin` nawigacja nie zawiera „Media"
-- [ ] Weryfikacja: `pnpm test:int` zielony dla nowego pliku; brak zakładki Media; typecheck czysty
+- [x] Modyfikuj `src/collections/Media.ts`: dodaj `admin: { hidden: true }`, polski label `alt` („Tekst alternatywny (opis zdjęcia)")
+- [x] Stwórz `src/lib/media.ts`: `resolveMediaUrl(field: string | Media | null | undefined, fallback: string): string`
+- [x] Stwórz `src/lib/payload-global.ts`: `fetchGlobal<S>(slug, fallback)` — generic per slug, try/catch + logger, zwraca fallback w catch
+- [x] Stwórz `tests/int/media-url.int.spec.ts`
+- [x] Test: `resolveMediaUrl` zwraca `media.url` gdy obiekt z `url`
+- [x] Test: `resolveMediaUrl` zwraca `fallback` gdy `null`/`undefined`/string-id/obiekt bez `url`
+- [ ] Test (E2E): po zalogowaniu do `/admin` nawigacja nie zawiera „Media" (do weryfikacji w dev-docs-review)
+- [ ] Weryfikacja: `pnpm test:int` zielony dla nowego pliku; brak zakładki Media; typecheck czysty (test+typecheck ✅; nav wizualnie w review)
 
 ## Unit 2: Global Strona główna + wiring (L)
 

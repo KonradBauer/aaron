@@ -1,7 +1,7 @@
 # Kontekst: Edytowalne treści podstron
 
 Branch: `feature/edytowalne-tresci-podstron`
-Ostatnia aktualizacja: 2026-05-29
+Ostatnia aktualizacja: 2026-05-29 (Unit 1 ukończony)
 
 ## Powiązane pliki
 
@@ -63,6 +63,19 @@ Ostatnia aktualizacja: 2026-05-29
 - `ratio` galerii w kodzie per indeks — potwierdzić dopasowanie do 12 slotów.
 - `<strong>` w sekcji deadline zasiłku — przy plain text pominąć/zachować jako całość; potwierdzić wizualnie.
 - Persystencja uploadów na prod (`docker-compose.prod.yml`).
+
+## Postęp / odkrycia
+
+### Unit 1 (2026-05-29)
+- `resolveMediaUrl` przyjmuje `string | Media | null | undefined` (import typu `Media` z payload-types) — bez `as`, bez `any`.
+- `fetchGlobal<S extends keyof Config['globals']>` — generic per slug zwraca `Config['globals'][S]`, bez `as`. Typecheck czysty. Bez `cache()` w środku — dedup robi per-stronowy wrapper (`cache()` w helperach Unit 2+).
+- `Media.admin.hidden = true` ukrywa z nawigacji; pole upload nadal działa.
+- Testy `resolveMediaUrl`: 5/5 zielone (`tests/int/media-url.int.spec.ts`).
+
+### BLOKER (środowiskowy, pre-existing): ESLint nie działa
+- `pnpm lint` wywala `ERR_MODULE_NOT_FOUND: '@eslint/eslintrc'`. Pakiet nieobecny w `package.json` i `node_modules`, a `eslint.config.mjs` importuje go przez `FlatCompat`.
+- NIE wprowadzone przez tę gałąź — config eslint nietknięty.
+- Quality gate „lint" niewykonalny dopóki nie doinstalowane `@eslint/eslintrc` (devDependency). Wymaga zgody usera na instalację.
 
 ## Źródła
 - Requirements doc: docs/dev-brainstorms/2026-05-29-edycja-tresci-podstron-requirements.md
