@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { services } from '@/data/services'
 import { getHomeContent, HERO_IMG_FALLBACK, ABOUT_IMG_FALLBACK } from '@/lib/home'
 import { resolveMediaUrl } from '@/lib/media'
+import { getServicesList } from '@/lib/oferta'
 import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  const [settings, content] = await Promise.all([getSiteSettings(), getHomeContent()])
+  const [settings, content, servicesList] = await Promise.all([
+    getSiteSettings(),
+    getHomeContent(),
+    getServicesList(),
+  ])
   const PHONE = settings.phone ?? '+48 000 000 000'
   const PHONE_HREF = phoneHref(PHONE)
 
@@ -112,7 +116,7 @@ export default async function HomePage() {
         </div>
 
         <div className="max-w-[var(--container)] mx-auto px-6 grid grid-cols-3 max-[900px]:grid-cols-2 max-[600px]:grid-cols-1 gap-px bg-[var(--color-border-subtle)]">
-          {services.map((service, index) => (
+          {servicesList.map((service, index) => (
             <Link
               key={service.slug}
               href={`/oferta/${service.slug}`}

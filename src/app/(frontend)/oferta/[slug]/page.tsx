@@ -3,20 +3,21 @@ import { notFound } from 'next/navigation'
 
 import JsonLd from '@/components/JsonLd'
 import ServiceLayout from '@/components/ServiceLayout'
-import { getService, services } from '@/data/services'
+import { SERVICE_SLUGS } from '@/data/services'
+import { getServiceContent } from '@/lib/oferta'
 import { SITE_URL } from '@/lib/site-url'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
-export async function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }))
+export function generateStaticParams() {
+  return SERVICE_SLUGS.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const service = getService(slug)
+  const service = await getServiceContent(slug)
   if (!service) return {}
 
   return {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params
-  const service = getService(slug)
+  const service = await getServiceContent(slug)
 
   if (!service) notFound()
 

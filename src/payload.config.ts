@@ -9,6 +9,7 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { SiteSettings } from './globals/SiteSettings'
 import { HomePage } from './globals/HomePage'
+import { OfertaPage } from './globals/OfertaPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [SiteSettings, HomePage],
+  globals: [SiteSettings, HomePage, OfertaPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

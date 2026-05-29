@@ -90,10 +90,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'strona-glowna': StronaGlowna;
+    oferta: Oferta;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'strona-glowna': StronaGlownaSelect<false> | StronaGlownaSelect<true>;
+    oferta: OfertaSelect<false> | OfertaSelect<true>;
   };
   locale: null;
   widgets: {
@@ -416,6 +418,49 @@ export interface StronaGlowna {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oferta".
+ */
+export interface Oferta {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  /**
+   * Edytuj treść istniejących usług. Liczba usług i ich adresy URL są stałe.
+   */
+  services?:
+    | {
+        /**
+         * Stała część adresu /oferta/… — nieedytowalna.
+         */
+        slug: string;
+        title: string;
+        shortDesc: string;
+        description?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Puste = zostaje zdjęcie domyślne.
+         */
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -486,6 +531,42 @@ export interface StronaGlownaSelect<T extends boolean = true> {
     | {
         heading?: T;
         text?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oferta_select".
+ */
+export interface OfertaSelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  services?:
+    | T
+    | {
+        slug?: T;
+        title?: T;
+        shortDesc?: T;
+        description?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        image?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import PageHero from '@/components/PageHero'
-import { services } from '@/data/services'
+import { getOfertaPage, getServicesList } from '@/lib/oferta'
 
 export const metadata: Metadata = {
   title: 'Oferta',
@@ -11,17 +11,20 @@ export const metadata: Metadata = {
   alternates: { canonical: '/oferta' },
 }
 
-export default function OfertaPage() {
+export default async function OfertaPage() {
+  const [page, servicesList] = await Promise.all([getOfertaPage(), getServicesList()])
+  const intro = page.intro ?? {}
+
   return (
     <>
       <PageHero
-        title="Nasze usługi"
-        subtitle="Kompleksowa obsluga pogrzebowa - zadbamy o kazdy szczegol, bys mógł poswiecic czas rodzinie."
+        title={intro.heroTitle ?? 'Nasze usługi'}
+        subtitle={intro.heroSubtitle ?? undefined}
         breadcrumb={[{ label: 'Oferta' }]}
       />
 
       <div className="max-w-[var(--container)] mx-auto px-6 py-[var(--section-v)] grid grid-cols-3 max-[900px]:grid-cols-2 max-[560px]:grid-cols-1 gap-px bg-[var(--color-border-subtle)]">
-        {services.map((service, index) => (
+        {servicesList.map((service, index) => (
           <Link
             key={service.slug}
             href={`/oferta/${service.slug}`}
@@ -35,7 +38,7 @@ export default function OfertaPage() {
               {service.title}
             </h2>
             <p className="text-[0.875rem] text-text-muted leading-relaxed flex-1">{service.shortDesc}</p>
-            <span className="text-[0.75rem] text-gold mt-2 tracking-[0.1em] uppercase">Dowiedz sie wiecej →</span>
+            <span className="text-[0.75rem] text-gold mt-2 tracking-[0.1em] uppercase">Dowiedz się więcej →</span>
           </Link>
         ))}
       </div>

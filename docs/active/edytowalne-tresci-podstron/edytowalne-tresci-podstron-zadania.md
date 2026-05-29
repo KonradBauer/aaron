@@ -30,22 +30,22 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): puste `hero.image` → `/` renderuje fallback Unsplash (dev-docs-review)
 - [x] Weryfikacja: `generate:types` przechodzi; typecheck czysty; lint czysty (render wizualnie w review)
 
-## Unit 3: Global Oferta + wiring listy/szczegółów/sekcji home (XL)
+## Unit 3: Global Oferta + wiring listy/szczegółów/sekcji home (XL) ✅
 
-- [ ] Stwórz `src/globals/OfertaPage.ts` (slug `oferta`, label „Oferta (usługi)", group `Treści`, hook revalidate)
-- [ ] Pola: `intro` {heroTitle, heroSubtitle}; `services` array `minRows:13, maxRows:13`, item {slug(readOnly), title, shortDesc, description[], features[], image} — `defaultValue` = 13 usług z `src/data/services.ts`
-- [ ] Stwórz `src/lib/oferta.ts`: `getOfertaContent()`, `getServiceContent(slug)`, FALLBACK
-- [ ] Modyfikuj `src/data/services.ts`: redukcja do `SERVICE_SLUGS` + fallbacki obrazków per slug (usuń treść przeniesioną do globala)
-- [ ] Modyfikuj `src/payload.config.ts`: rejestracja
-- [ ] Modyfikuj `src/app/(frontend)/oferta/page.tsx` (lista z globala)
-- [ ] Modyfikuj `src/app/(frontend)/oferta/[slug]/page.tsx` (`generateStaticParams` ze `SERVICE_SLUGS`, treść+schema z globala, `notFound()` gdy brak)
-- [ ] Modyfikuj `src/app/(frontend)/page.tsx`: sekcja usług z globala `oferta`
-- [ ] `pnpm generate:types`
-- [ ] Test (E2E): edycja `services[0].title` → `/oferta` i `/oferta/sala-pozegnan` pokazują nowy tytuł
-- [ ] Test (E2E): w panelu brak możliwości dodania 14. usługi / usunięcia istniejącej (locked rows)
-- [ ] Test (E2E): dodanie/usunięcie punktu w `features` jednej usługi działa
-- [ ] Test (E2E): nieistniejący slug → 404
-- [ ] Weryfikacja: `generate:types`; `/oferta`, każdy `/oferta/[slug]` i sekcja usług na `/` renderują z globala; `generateStaticParams` zwraca 13 slugów; typecheck czysty
+- [x] Stwórz `src/globals/OfertaPage.ts` (slug `oferta`, label „Oferta (usługi)", group `Treści`, hook revalidate)
+- [x] Pola: `intro` {heroTitle, heroSubtitle}; `services` array `minRows:13, maxRows:13`, item {slug(readOnly), title, shortDesc, description[], features[], image} — `defaultValue` = 13 usług z `src/data/services.ts`
+- [x] Stwórz `src/lib/oferta.ts`: `getOfertaPage()`, `getServicesList()`, `getServiceContent(slug)`, FALLBACK + fallbacki obrazków per slug
+- [x] Modyfikuj `src/data/services.ts`: dodano `SERVICE_SLUGS` (services.ts pozostaje kanonicznym seed/fallback — uniknięcie duplikacji treści)
+- [x] Modyfikuj `src/payload.config.ts`: rejestracja
+- [x] Modyfikuj `src/app/(frontend)/oferta/page.tsx` (lista + intro z globala)
+- [x] Modyfikuj `src/app/(frontend)/oferta/[slug]/page.tsx` (`generateStaticParams` ze `SERVICE_SLUGS`, treść+schema z globala, `notFound()` gdy brak)
+- [x] Modyfikuj `src/app/(frontend)/page.tsx`: sekcja usług z `getServicesList()`
+- [x] `pnpm generate:types` (typ wygenerowany: `Oferta`)
+- [ ] Test (E2E): edycja `services[0].title` → `/oferta` i `/oferta/sala-pozegnan` pokazują nowy tytuł (dev-docs-review)
+- [ ] Test (E2E): w panelu brak możliwości dodania 14. usługi / usunięcia istniejącej (locked rows) (dev-docs-review)
+- [ ] Test (E2E): dodanie/usunięcie punktu w `features` jednej usługi działa (dev-docs-review)
+- [ ] Test (E2E): nieistniejący slug → 404 (dev-docs-review)
+- [x] Weryfikacja: `generate:types`; typecheck czysty; lint czysty; `generateStaticParams` ze `SERVICE_SLUGS` (render wizualnie w review)
 
 ## Unit 4: Global Galeria + wiring (M)
 
