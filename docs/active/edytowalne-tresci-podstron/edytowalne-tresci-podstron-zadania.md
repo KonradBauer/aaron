@@ -47,16 +47,17 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): nieistniejący slug → 404 (dev-docs-review)
 - [x] Weryfikacja: `generate:types`; typecheck czysty; lint czysty; `generateStaticParams` ze `SERVICE_SLUGS` (render wizualnie w review)
 
-## Unit 4: Global Galeria + wiring (M)
+## Unit 4: Global Galeria + wiring (M) ✅
 
-- [ ] Stwórz `src/globals/GaleriaPage.ts` (slug `galeria`, label „Galeria", hook revalidate)
-- [ ] Pola: `intro` {heroTitle, heroSubtitle}; `footerNote`; `images` array `minRows:12, maxRows:12`, item {image, alt}
-- [ ] Stwórz `src/lib/galeria.ts`: `getGaleriaContent()` + FALLBACK (fallbacki obrazków + ratio per indeks w kodzie)
-- [ ] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/galeria/page.tsx`
-- [ ] `pnpm generate:types`
-- [ ] Test (E2E): wgranie zdjęcia w `images[0]` → `/galeria` pokazuje plik zamiast fallbacku
-- [ ] Test (E2E): puste sloty → fallback Unsplash, layout 12 kafelków zachowany
-- [ ] Weryfikacja: `generate:types`; `/galeria` renderuje 12 kafelków z poprawnymi ratio; typecheck czysty
+- [x] Stwórz `src/globals/GaleriaPage.ts` (slug `galeria`, label „Galeria", hook revalidate)
+- [x] Pola: `intro` {heroTitle, heroSubtitle}; `footerNote`; `images` array `minRows:12, maxRows:12`, item {image, alt}
+- [x] Stwórz `src/data/gallery.ts` (statyczne dane: alt, ratio, fallback url — unika cyklu importów)
+- [x] Stwórz `src/lib/galeria.ts`: `getGaleriaPage()`, `getGalleryImages()` + FALLBACK (ratio + fallback obrazka per indeks)
+- [x] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/galeria/page.tsx`
+- [x] `pnpm generate:types` (typ: `Galeria`)
+- [ ] Test (E2E): wgranie zdjęcia w `images[0]` → `/galeria` pokazuje plik zamiast fallbacku (dev-docs-review)
+- [ ] Test (E2E): puste sloty → fallback Unsplash, layout 12 kafelków zachowany (dev-docs-review)
+- [x] Weryfikacja: `generate:types`; typecheck + lint czyste (render wizualnie w review)
 
 ## Unit 5: Global Krok po kroku + schema HowTo (M)
 

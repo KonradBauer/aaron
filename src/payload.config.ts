@@ -10,6 +10,7 @@ import { Media } from './collections/Media'
 import { SiteSettings } from './globals/SiteSettings'
 import { HomePage } from './globals/HomePage'
 import { OfertaPage } from './globals/OfertaPage'
+import { GaleriaPage } from './globals/GaleriaPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -33,7 +34,7 @@ export default buildConfig({
     },
   },
   collections: [Users, Media],
-  globals: [SiteSettings, HomePage, OfertaPage],
+  globals: [SiteSettings, HomePage, OfertaPage, GaleriaPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

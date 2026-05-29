@@ -91,11 +91,13 @@ export interface Config {
     'site-settings': SiteSetting;
     'strona-glowna': StronaGlowna;
     oferta: Oferta;
+    galeria: Galeria;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'strona-glowna': StronaGlownaSelect<false> | StronaGlownaSelect<true>;
     oferta: OfertaSelect<false> | OfertaSelect<true>;
+    galeria: GaleriaSelect<false> | GaleriaSelect<true>;
   };
   locale: null;
   widgets: {
@@ -461,6 +463,30 @@ export interface Oferta {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galeria".
+ */
+export interface Galeria {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  footerNote?: string | null;
+  /**
+   * Wgraj zdjęcie do każdego kafelka. Puste = zostaje zdjęcie domyślne.
+   */
+  images?:
+    | {
+        image?: (string | null) | Media;
+        alt: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -566,6 +592,29 @@ export interface OfertaSelect<T extends boolean = true> {
               id?: T;
             };
         image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galeria_select".
+ */
+export interface GaleriaSelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  footerNote?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
         id?: T;
       };
   updatedAt?: T;
