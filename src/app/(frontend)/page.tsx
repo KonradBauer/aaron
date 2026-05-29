@@ -1,8 +1,10 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { services } from '@/data/services'
+import { getHomeContent, HERO_IMG_FALLBACK, ABOUT_IMG_FALLBACK } from '@/lib/home'
+import { resolveMediaUrl } from '@/lib/media'
 import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 export const metadata: Metadata = {
@@ -12,19 +14,25 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 }
 
-const HERO_IMG = 'https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?w=1920&q=85&fit=crop'
-const ABOUT_IMG = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=900&q=80&fit=crop'
-
 export default async function HomePage() {
-  const settings = await getSiteSettings()
+  const [settings, content] = await Promise.all([getSiteSettings(), getHomeContent()])
   const PHONE = settings.phone ?? '+48 000 000 000'
   const PHONE_HREF = phoneHref(PHONE)
+
+  const hero = content.hero ?? {}
+  const about = content.about ?? {}
+  const servicesSection = content.servicesSection ?? {}
+  const cta = content.cta ?? {}
+
+  const heroImg = resolveMediaUrl(hero.image, HERO_IMG_FALLBACK)
+  const aboutImg = resolveMediaUrl(about.image, ABOUT_IMG_FALLBACK)
+
   return (
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Sekcja główna">
         <Image
-          src={HERO_IMG}
+          src={heroImg}
           alt="Aaron Dom Pogrzebowy — sala pożegnań"
           fill
           className="object-cover object-center"
@@ -35,18 +43,18 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
 
         <div className="relative z-10 max-w-[var(--container)] mx-auto px-6 pt-[calc(var(--header-height)+40px)] pb-20 w-full flex flex-col items-start">
-          <span className="text-[0.75rem] font-medium tracking-[0.25em] uppercase text-gold mb-5">Dom Pogrzebowy</span>
+          <span className="text-[0.75rem] font-medium tracking-[0.25em] uppercase text-gold mb-5">{hero.badge}</span>
           <h1 className="font-heading font-light tracking-[0.03em] text-cream leading-[1.05] text-[clamp(3rem,7vw,6rem)] mb-2">
-            Aaron{' '}
-            <strong className="font-semibold block">Z godnością i troską.</strong>
+            {hero.titleLine1}{' '}
+            <strong className="font-semibold block">{hero.titleLine2}</strong>
           </h1>
           <div className="w-[60px] h-[1px] bg-gold my-7" />
           <p className="font-heading font-light italic text-text text-[clamp(1.125rem,2.5vw,1.5rem)] max-w-[560px] leading-[1.5] mb-10">
-            Towarzyszymy rodzinom w najtrudniejszych chwilach - profesjonalnie, dyskretnie i z najwyższą troską.
+            {hero.subtitle}
           </p>
           <div className="flex items-center gap-4 flex-wrap">
-            <a href={PHONE_HREF} className="btn btn--gold">Zadzwoń — dostępni 24h</a>
-            <Link href="/oferta" className="btn btn--outline">Nasze usługi</Link>
+            <a href={PHONE_HREF} className="btn btn--gold">{hero.ctaPrimaryLabel}</a>
+            <Link href="/oferta" className="btn btn--outline">{hero.ctaSecondaryLabel}</Link>
           </div>
         </div>
       </section>
@@ -55,41 +63,32 @@ export default async function HomePage() {
       <section className="bg-surface py-[var(--section-v)]" aria-labelledby="about-heading">
         <div className="max-w-[var(--container)] mx-auto px-6 grid grid-cols-2 max-[900px]:grid-cols-1 gap-20 max-[900px]:gap-12 items-center">
           <div className="flex flex-col gap-6">
-            <span className="section-label">O nas</span>
+            <span className="section-label">{about.label}</span>
             <h2 id="about-heading" className="font-heading font-normal text-cream tracking-[0.02em] leading-[1.15] text-[clamp(2rem,4vw,3rem)]">
-              Profesjonalizm i empatia w każdej chwili
+              {about.heading}
             </h2>
-            <p className="text-[0.9375rem] leading-[1.75] text-text-muted">
-              Dom Pogrzebowy Aaron to firma z wieloletnią tradycją i doświadczeniem w organizacji ceremonii pogrzebowych.
-              Naszym priorytetem jest godne i profesjonalne pożegnanie bliskiej osoby, przy jednoczesnym wsparciu
-              rodziny na każdym etapie — od pierwszego kontaktu aż po ceremonię.
-            </p>
-            <p className="text-[0.9375rem] leading-[1.75] text-text-muted">
-              Rozumiemy, ze każde pożegnanie jest wyjątkowe. Dlatego do każdej rodziny podchodzimy indywidualnie,
-              słuchając jej potrzeb i dostosowując każdy szczegół do oczekiwań i życzenia bliskich.
-            </p>
+            {(about.paragraphs ?? []).map((para) => (
+              <p key={para.id ?? para.text} className="text-[0.9375rem] leading-[1.75] text-text-muted">
+                {para.text}
+              </p>
+            ))}
             <ul className="flex flex-col gap-4">
-              {[
-                'Dostępni 24 godziny na dobę, 7 dni w tygodniu',
-                'Dwie wygodne lokalizacje',
-                'Mobilne biuro - przyjeżdżamy do Ciebie',
-                'Pełna obsługa formalna',
-              ].map((v) => (
-                <li key={v} className="flex items-start gap-4">
+              {(about.bullets ?? []).map((item) => (
+                <li key={item.id ?? item.text} className="flex items-start gap-4">
                   <span className="w-[6px] h-[6px] bg-gold rounded-full flex-shrink-0 mt-[7px]" />
-                  <span className="text-[0.9375rem] text-text leading-[1.5]">{v}</span>
+                  <span className="text-[0.9375rem] text-text leading-[1.5]">{item.text}</span>
                 </li>
               ))}
             </ul>
             <div>
-              <Link href="/kontakt" className="btn btn--outline-gold">Skontaktuj się z nami</Link>
+              <Link href="/kontakt" className="btn btn--outline-gold">{about.ctaLabel}</Link>
             </div>
           </div>
 
           {/* About image */}
           <div className="relative aspect-[4/5] max-[900px]:aspect-video overflow-hidden">
             <Image
-              src={ABOUT_IMG}
+              src={aboutImg}
               alt="Kwiaty - Aaron Dom Pogrzebowy"
               fill
               className="object-cover"
@@ -103,12 +102,12 @@ export default async function HomePage() {
       {/* Usługi */}
       <section className="py-[var(--section-v)]" aria-labelledby="services-heading">
         <div className="max-w-[var(--container)] mx-auto px-6 text-center mb-16">
-          <span className="section-label">Nasze usługi</span>
+          <span className="section-label">{servicesSection.label}</span>
           <h2 id="services-heading" className="font-heading font-normal text-cream tracking-[0.02em] text-[clamp(1.75rem,3.5vw,2.75rem)]">
-            Kompleksowa obsługa pogrzebowa
+            {servicesSection.heading}
           </h2>
           <p className="mt-4 text-[0.9375rem] text-text-muted max-w-[500px] mx-auto leading-[1.65]">
-            Oferujemy pełen zakres usług pogrzebowych — zadbamy o każdy szczegół, byś mógł poświęcić czas rodzinie.
+            {servicesSection.subtitle}
           </p>
         </div>
 
@@ -143,10 +142,10 @@ export default async function HomePage() {
         <div className="relative max-w-[var(--container)] mx-auto px-6 flex items-center justify-between gap-10 flex-wrap max-[600px]:flex-col max-[600px]:items-start">
           <div className="flex flex-col gap-2">
             <h2 className="font-heading font-normal text-cream tracking-[0.02em] text-[clamp(1.5rem,3vw,2.25rem)]">
-              Jesteśmy dostępni dla Ciebie zawsze
+              {cta.heading}
             </h2>
             <p className="text-[0.9375rem] text-cream/65">
-              Telefon czynny 24 godziny na dobę, 7 dni w tygodniu. Przyjedziemy do Ciebie.
+              {cta.text}
             </p>
           </div>
           <a href={PHONE_HREF} className="btn btn--gold">{PHONE}</a>

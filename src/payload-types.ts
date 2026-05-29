@@ -89,9 +89,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
+    'strona-glowna': StronaGlowna;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'strona-glowna': StronaGlownaSelect<false> | StronaGlownaSelect<true>;
   };
   locale: null;
   widgets: {
@@ -152,6 +154,9 @@ export interface User {
  */
 export interface Media {
   id: string;
+  /**
+   * Krótki opis tego, co przedstawia zdjęcie — dla czytników ekranu i SEO.
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -357,6 +362,60 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "strona-glowna".
+ */
+export interface StronaGlowna {
+  id: string;
+  hero?: {
+    badge?: string | null;
+    titleLine1?: string | null;
+    titleLine2?: string | null;
+    subtitle?: string | null;
+    /**
+     * Duże zdjęcie w tle sekcji głównej. Puste = zostaje zdjęcie domyślne.
+     */
+    image?: (string | null) | Media;
+    ctaPrimaryLabel?: string | null;
+    ctaSecondaryLabel?: string | null;
+  };
+  about?: {
+    label?: string | null;
+    heading?: string | null;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    bullets?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    ctaLabel?: string | null;
+    /**
+     * Zdjęcie obok tekstu. Puste = zostaje zdjęcie domyślne.
+     */
+    image?: (string | null) | Media;
+  };
+  /**
+   * Same karty usług pochodzą z zakładki „Oferta (usługi)".
+   */
+  servicesSection?: {
+    label?: string | null;
+    heading?: string | null;
+    subtitle?: string | null;
+  };
+  cta?: {
+    heading?: string | null;
+    text?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -374,6 +433,59 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         lat?: T;
         lng?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "strona-glowna_select".
+ */
+export interface StronaGlownaSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        badge?: T;
+        titleLine1?: T;
+        titleLine2?: T;
+        subtitle?: T;
+        image?: T;
+        ctaPrimaryLabel?: T;
+        ctaSecondaryLabel?: T;
+      };
+  about?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        bullets?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaLabel?: T;
+        image?: T;
+      };
+  servicesSection?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        subtitle?: T;
+      };
+  cta?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
       };
   updatedAt?: T;
   createdAt?: T;

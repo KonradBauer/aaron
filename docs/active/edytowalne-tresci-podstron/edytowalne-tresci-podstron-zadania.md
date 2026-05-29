@@ -18,17 +18,17 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): po zalogowaniu do `/admin` nawigacja nie zawiera „Media" (do weryfikacji w dev-docs-review)
 - [ ] Weryfikacja: `pnpm test:int` zielony dla nowego pliku; brak zakładki Media; typecheck czysty (test+typecheck ✅; nav wizualnie w review)
 
-## Unit 2: Global Strona główna + wiring (L)
+## Unit 2: Global Strona główna + wiring (L) ✅
 
-- [ ] Stwórz `src/globals/HomePage.ts` (slug `strona-glowna`, label „Strona główna", group `Treści`, hook revalidate)
-- [ ] Pola: `hero` {badge, titleLine1, titleLine2, subtitle, image, ctaPrimaryLabel, ctaSecondaryLabel}; `about` {label, heading, paragraphs[], bullets[], ctaLabel, image}; `services` {label, heading, subtitle}; `cta` {heading, text} — z `defaultValue` z obecnego `page.tsx`
-- [ ] Stwórz `src/lib/home.ts`: `getHomeContent()` + FALLBACK + stałe fallbacki `HERO_IMG`/`ABOUT_IMG`
-- [ ] Modyfikuj `src/payload.config.ts`: rejestracja globala
-- [ ] Modyfikuj `src/app/(frontend)/page.tsx`: czytanie z globala, obrazki przez `resolveMediaUrl`
-- [ ] `pnpm generate:types`
-- [ ] Test (E2E): `/admin` → „Strona główna" → zmiana `hero.titleLine2` → zapis → `/` pokazuje nowy tekst
-- [ ] Test (E2E): puste `hero.image` → `/` renderuje fallback Unsplash
-- [ ] Weryfikacja: `generate:types` przechodzi; `/` renderuje treść z globala; typecheck czysty
+- [x] Stwórz `src/globals/HomePage.ts` (slug `strona-glowna`, label „Strona główna", group `Treści`, hook revalidate)
+- [x] Pola: `hero` {badge, titleLine1, titleLine2, subtitle, image, ctaPrimaryLabel, ctaSecondaryLabel}; `about` {label, heading, paragraphs[], bullets[], ctaLabel, image}; `servicesSection` {label, heading, subtitle}; `cta` {heading, text} — z `defaultValue` z obecnego `page.tsx`
+- [x] Stwórz `src/lib/home.ts`: `getHomeContent()` + FALLBACK + stałe fallbacki `HERO_IMG_FALLBACK`/`ABOUT_IMG_FALLBACK`
+- [x] Modyfikuj `src/payload.config.ts`: rejestracja globala
+- [x] Modyfikuj `src/app/(frontend)/page.tsx`: czytanie z globala, obrazki przez `resolveMediaUrl` (typ wygenerowany: `StronaGlowna`)
+- [x] `pnpm generate:types`
+- [ ] Test (E2E): `/admin` → „Strona główna" → zmiana `hero.titleLine2` → zapis → `/` pokazuje nowy tekst (dev-docs-review)
+- [ ] Test (E2E): puste `hero.image` → `/` renderuje fallback Unsplash (dev-docs-review)
+- [x] Weryfikacja: `generate:types` przechodzi; typecheck czysty; lint czysty (render wizualnie w review)
 
 ## Unit 3: Global Oferta + wiring listy/szczegółów/sekcji home (XL)
 
