@@ -94,6 +94,7 @@ export interface Config {
     galeria: Galeria;
     'krok-po-kroku': KrokPoKroku;
     tanatokosmetyka: Tanatokosmetyka;
+    'zasilek-pogrzebowy': ZasilekPogrzebowy;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
@@ -102,6 +103,7 @@ export interface Config {
     galeria: GaleriaSelect<false> | GaleriaSelect<true>;
     'krok-po-kroku': KrokPoKrokuSelect<false> | KrokPoKrokuSelect<true>;
     tanatokosmetyka: TanatokosmetykaSelect<false> | TanatokosmetykaSelect<true>;
+    'zasilek-pogrzebowy': ZasilekPogrzebowySelect<false> | ZasilekPogrzebowySelect<true>;
   };
   locale: null;
   widgets: {
@@ -547,6 +549,68 @@ export interface Tanatokosmetyka {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "zasilek-pogrzebowy".
+ */
+export interface ZasilekPogrzebowy {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  whatIs?: {
+    label?: string | null;
+    heading?: string | null;
+    text?: string | null;
+  };
+  whoQualifies?: {
+    heading?: string | null;
+    intro?: string | null;
+    bullets?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  amount?: {
+    heading?: string | null;
+    amountLabel?: string | null;
+    amountValue?: string | null;
+    amountNote?: string | null;
+    text?: string | null;
+  };
+  documents?: {
+    heading?: string | null;
+    bullets?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  deadline?: {
+    heading?: string | null;
+    text?: string | null;
+  };
+  ctaBox?: {
+    heading?: string | null;
+    text?: string | null;
+  };
+  /**
+   * Niewidoczne na stronie — używane przez Google (dane strukturalne FAQ). Trzymaj zgodne z treścią powyżej.
+   */
+  faq?:
+    | {
+        question: string;
+        answer: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -729,6 +793,79 @@ export interface TanatokosmetykaSelect<T extends boolean = true> {
     | T
     | {
         text?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "zasilek-pogrzebowy_select".
+ */
+export interface ZasilekPogrzebowySelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  whatIs?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        text?: T;
+      };
+  whoQualifies?:
+    | T
+    | {
+        heading?: T;
+        intro?: T;
+        bullets?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  amount?:
+    | T
+    | {
+        heading?: T;
+        amountLabel?: T;
+        amountValue?: T;
+        amountNote?: T;
+        text?: T;
+      };
+  documents?:
+    | T
+    | {
+        heading?: T;
+        bullets?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  deadline?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+      };
+  ctaBox?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+      };
+  faq?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   updatedAt?: T;

@@ -81,17 +81,17 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Test (E2E): puste `image` → fallback Unsplash w ServiceLayout (dev-docs-review)
 - [x] Weryfikacja: `generate:types`; typecheck + lint czyste (render w review)
 
-## Unit 7: Global Zasiłek pogrzebowy + schema FAQ (L)
+## Unit 7: Global Zasiłek pogrzebowy + schema FAQ (L) ✅
 
-- [ ] Stwórz `src/globals/ZasilekPage.ts` (slug `zasilek-pogrzebowy`, label „Zasiłek pogrzebowy", hook revalidate)
-- [ ] Pola (groupy): `intro` {heroTitle, heroSubtitle}; `whatIs` {heading, text}; `whoQualifies` {heading, intro, bullets[]}; `amount` {heading, amountLabel, amountValue, amountNote, text}; `documents` {heading, bullets[]}; `deadline` {heading, text}; `ctaBox` {heading, text}; `faq` array {question, answer}
-- [ ] Stwórz `src/lib/zasilek.ts`: `getZasilekContent()` + FALLBACK
-- [ ] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/zasilek-pogrzebowy/page.tsx` (`faqSchema` z globala, obsługa `<strong>` w deadline — plain)
-- [ ] `pnpm generate:types`
-- [ ] Test (E2E): edycja `amount.amountValue` → `/zasilek-pogrzebowy` pokazuje nową kwotę
-- [ ] Test (E2E): dodanie punktu w `documents.bullets` → widoczne na stronie
-- [ ] Test (E2E): edycja `faq[0].answer` → odzwierciedlone w JSON-LD FAQ na stronie
-- [ ] Weryfikacja: `generate:types`; strona i schema FAQ z globala; typecheck czysty
+- [x] Stwórz `src/globals/ZasilekPage.ts` (slug `zasilek-pogrzebowy`, label „Zasiłek pogrzebowy", hook revalidate)
+- [x] Pola (groupy): `intro`; `whatIs` {label, heading, text}; `whoQualifies` {heading, intro, bullets[]}; `amount` {heading, amountLabel, amountValue, amountNote, text}; `documents` {heading, bullets[]}; `deadline` {heading, text}; `ctaBox` {heading, text}; `faq` array {question, answer}
+- [x] Stwórz `src/data/zasilek.ts` (treść) + `src/lib/zasilek.ts`: `getZasilekContent()` + FALLBACK
+- [x] Modyfikuj `src/payload.config.ts`, `src/app/(frontend)/zasilek-pogrzebowy/page.tsx` (`faqSchema` z globala; `<strong>` w deadline usunięty → plain text)
+- [x] `pnpm generate:types` (typ: `ZasilekPogrzebowy`)
+- [ ] Test (E2E): edycja `amount.amountValue` → `/zasilek-pogrzebowy` pokazuje nową kwotę (dev-docs-review)
+- [ ] Test (E2E): dodanie punktu w `documents.bullets` → widoczne na stronie (dev-docs-review)
+- [ ] Test (E2E): edycja `faq[0].answer` → odzwierciedlone w JSON-LD FAQ (dev-docs-review)
+- [x] Weryfikacja: `generate:types`; typecheck + lint czyste; FAQ schema z globala (render w review)
 
 ## Unit 8: Finalna weryfikacja, typy, quality gate (M)
 
