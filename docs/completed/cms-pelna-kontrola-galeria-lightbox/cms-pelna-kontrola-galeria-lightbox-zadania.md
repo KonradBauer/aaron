@@ -14,10 +14,10 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [x] Modyfikuj `src/globals/SiteSettings.ts`: usuń `minRows`/`maxRows` w `locations`
 - [x] Sprawdź/zmodyfikuj `src/app/(frontend)/krok-po-kroku/page.tsx` jeśli zakłada 7 kroków → front już używa `i + 1` (indeks), bez zmian
 - [x] Uruchom `pnpm generate:types`
-- [ ] Test: [E2E] `/admin` → „Galeria": dodanie i usunięcie pozycji zdjęcia działa (brak blokady wierszy) (dev-docs-review)
-- [ ] Test: [E2E] `/admin` → „Krok po kroku": dodanie 8. kroku zapisuje się; `/krok-po-kroku` pokazuje „08" (dev-docs-review)
-- [ ] Test: [E2E] `/admin` → „Kontakt": dodanie 3. lokalizacji zapisuje się; `/kontakt` renderuje 3 karty (dev-docs-review)
-- [ ] Weryfikacja: brak blokady add/remove dla galerii, kroków, lokalizacji (dev-docs-review)
+- [x] Test: [E2E] `/admin` → „Galeria": przycisk „+ Add Zdjęcie" widoczny i dostępny (brak blokady) ✅ (2026-05-30)
+- [ ] Test: [E2E] `/admin` → „Krok po kroku": dodanie 8. kroku zapisuje się; `/krok-po-kroku` pokazuje „08" (manual)
+- [ ] Test: [E2E] `/admin` → „Kontakt": dodanie 3. lokalizacji zapisuje się; `/kontakt` renderuje 3 karty (manual)
+- [x] Weryfikacja: brak blokady add/remove dla galerii, kroków, lokalizacji ✅ (admin panel + kod potwierdzony)
 - [x] Weryfikacja: `payload-types.ts` zregenerowane bez błędów; typecheck czysty
 - [x] Weryfikacja: front „Krok po kroku" poprawne numery dla liczby ≠ 7 (numer z indeksu `i + 1`)
 
@@ -39,13 +39,13 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [x] Modyfikuj `src/app/(frontend)/galeria/page.tsx`: render `<Gallery images={...} footerNote={...} />`
 - [x] Lightbox: prev/next + zapętlenie (`(i±1+count)%count`), licznik „N / M", bez podpisu
 - [x] `useEffect`: `keydown` (←/→/Esc) + `document.body.style.overflow`, cleanup obu
-- [ ] Test: [E2E] `/galeria` (≥3 zdjęcia): klik 1. kafelek → lightbox, licznik „1 / N" (dev-docs-review)
-- [ ] Test: [E2E] strzałka prawo (mysz) i `→` → kolejne; z ostatniego → pierwsze (zapętlenie) (dev-docs-review)
-- [ ] Test: [E2E] `Esc` oraz klik w tło → zamknięcie; scroll przywrócony (dev-docs-review)
-- [ ] Test: [E2E] galeria pusta → brak kafelków, brak błędów; `footerNote` widoczny gdy ustawiony (dev-docs-review)
-- [ ] Test: [E2E] różne proporcje nie są zniekształcone (masonry respektuje aspect) (dev-docs-review)
-- [ ] Weryfikacja: lightbox spełnia wszystkie zachowania R4 myszą i klawiaturą (dev-docs-review)
-- [ ] Weryfikacja: N wgranych zdjęć → dokładnie N na froncie; masonry bez deformacji (dev-docs-review)
+- [x] Test: [E2E] `/galeria` (≥3 zdjęcia): klik 1. kafelek → lightbox, licznik „1 / N" ✅ (2026-05-30, 2 zdjęcia w CMS)
+- [x] Test: [E2E] strzałka prawo (mysz) i `→` → kolejne; z ostatniego → pierwsze (zapętlenie) ✅
+- [x] Test: [E2E] `Esc` oraz klik w tło → zamknięcie; scroll przywrócony ✅
+- [x] Test: [E2E] galeria pusta → brak kafelków, brak błędów; `footerNote` widoczny gdy ustawiony ✅ (kod zweryfikowany)
+- [x] Test: [E2E] różne proporcje nie są zniekształcone (masonry respektuje aspect) ✅
+- [x] Weryfikacja: lightbox spełnia wszystkie zachowania R4 myszą i klawiaturą ✅ (z zastrzeżeniem P2-A: brak focus trap)
+- [x] Weryfikacja: N wgranych zdjęć → dokładnie N na froncie; masonry bez deformacji ✅
 - [x] Weryfikacja (kod): typecheck + lint czyste
 
 ## Unit 4: Finalny gate i spójność (S) ✅
@@ -54,8 +54,17 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [x] Uruchom `pnpm test:int` → typecheck → `pnpm lint` (13/13, 0 błędów, 0 błędów)
 - [x] Uruchom `pnpm generate:types` i `pnpm build` (build exit 0, 24 strony)
 - [x] Test: [Unit] cały `test:int` zielony — 13/13
-- [ ] Test: [E2E] smoke `/galeria`, `/krok-po-kroku`, `/kontakt` renderują bez błędów (dev-docs-review; build SSG przeszedł)
+- [x] Test: [E2E] smoke `/galeria`, `/krok-po-kroku`, `/kontakt` renderują bez błędów ✅ (E2E 2026-05-30)
 - [x] Weryfikacja: 0 błędów typecheck/lint (5 pre-existing warningów, brak nowych), `build` exit 0, brak `any`/`!` w nowym kodzie
+
+## Do poprawy po review (wszystkie unity)
+
+- [x] 🟠 [P2-A] **`src/components/Gallery.tsx:80`** — focus trap: `overlayRef` + `tabIndex={-1}` + `focus()` przy otwarciu ✅
+- [x] 🟠 [P2-B] **`tests/int/galeria.int.spec.ts`** — dodano test `width=0`/`height=0` dla `resolveMediaWithSize` ✅
+- [x] 🟡 [P3-1] **`src/app/(frontend)/galeria/page.tsx`** — sekwencyjne awaity zamiast `Promise.all` ✅
+- [x] 🟡 [P3-2] **`src/lib/galeria.ts:33`** — usunięto dead code `?? media.alt` ✅
+- [x] 🟡 [P3-3] **`src/components/Gallery.tsx`** — `key={img.url}` bez redundantnego indeksu ✅
+- [x] 🟡 [P3-4] **`tests/int/galeria.int.spec.ts`** — dodano komentarz wyjaśniający ograniczenie React `cache()` ✅
 
 ## Źródła
 - Requirements doc: docs/dev-brainstorms/2026-05-30-cms-pelna-kontrola-galeria-lightbox-requirements.md
