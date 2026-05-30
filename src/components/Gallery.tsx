@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import type { GalleryImage } from '@/lib/galeria'
 
@@ -14,6 +14,7 @@ export default function Gallery({ images, footerNote }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const isOpen = openIndex !== null
   const count = images.length
+  const overlayRef = useRef<HTMLDivElement>(null)
 
   const close = useCallback(() => setOpenIndex(null), [])
   const goPrev = useCallback(() => {
@@ -23,9 +24,11 @@ export default function Gallery({ images, footerNote }: Props) {
     setOpenIndex((i) => (i === null ? i : (i + 1) % count))
   }, [count])
 
-  // Klawiatura (←/→/Esc) + blokada scrolla tła — rejestrowane i sprzątane gdy lightbox otwarty.
+  // Klawiatura (←/→/Esc) + blokada scrolla tła + focus na overlay — rejestrowane i sprzątane gdy lightbox otwarty.
   useEffect(() => {
     if (!isOpen) return
+
+    overlayRef.current?.focus()
 
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') close()
@@ -54,7 +57,7 @@ export default function Gallery({ images, footerNote }: Props) {
       <div className="columns-3 max-[768px]:columns-2 max-[480px]:columns-1 gap-1">
         {images.map((img, i) => (
           <button
-            key={`${img.url}-${i}`}
+            key={img.url}
             type="button"
             onClick={() => setOpenIndex(i)}
             className="block w-full mb-1 break-inside-avoid relative overflow-hidden group cursor-pointer"
@@ -79,7 +82,9 @@ export default function Gallery({ images, footerNote }: Props) {
 
       {isOpen && current && (
         <div
-          className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center"
+          ref={overlayRef}
+          tabIndex={-1}
+          className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center outline-none"
           onClick={close}
           role="dialog"
           aria-modal="true"

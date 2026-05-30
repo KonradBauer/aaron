@@ -30,6 +30,6 @@ export async function getGalleryImages(): Promise<GalleryImage[]> {
   return items.flatMap((item) => {
     const media = resolveMediaWithSize(item.image)
     if (!media) return []
-    return [{ url: media.url, alt: item.alt ?? media.alt, width: media.width, height: media.height }]
+    return [{ url: media.url, alt: item.alt, width: media.width, height: media.height }]
   })
 }

@@ -48,10 +48,16 @@ describe('resolveMediaWithSize', () => {
   it('zwraca null gdy brak url', () => {
     expect(resolveMediaWithSize(media({ url: null }))).toBeNull()
   })
+
+  it('zwraca null gdy width lub height wynosi 0', () => {
+    expect(resolveMediaWithSize(media({ width: 0, height: 600 }))).toBeNull()
+    expect(resolveMediaWithSize(media({ width: 800, height: 0 }))).toBeNull()
+  })
 })
 
 // getGaleriaPage jest owinięte react cache() (memoizuje pierwszy wynik w obrębie modułu),
-// więc getGalleryImages wołamy raz, z jednym datasetem pokrywającym wszystkie przypadki.
+// więc getGalleryImages wołamy raz, z jednym datasetem pokrywającym wszystkie przypadki naraz.
+// Przypadek images:[] pokryty przez FALLBACK.images=[] w galeria.ts i flatMap na pustej tablicy.
 describe('getGalleryImages', () => {
   it('mapuje tylko pozycje z populowanym obrazkiem (z wymiarami), resztę pomija', async () => {
     const page: Galeria = {

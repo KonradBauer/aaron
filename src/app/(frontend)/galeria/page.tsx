@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 }
 
 export default async function GaleriaPage() {
-  const [page, images] = await Promise.all([getGaleriaPage(), getGalleryImages()])
+  const page = await getGaleriaPage()
+  const images = await getGalleryImages()
   const intro = page.intro ?? {}
 
   return (
