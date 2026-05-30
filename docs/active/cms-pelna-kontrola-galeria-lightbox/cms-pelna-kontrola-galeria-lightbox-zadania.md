@@ -48,14 +48,14 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [ ] Weryfikacja: N wgranych zdjęć → dokładnie N na froncie; masonry bez deformacji (dev-docs-review)
 - [x] Weryfikacja (kod): typecheck + lint czyste
 
-## Unit 4: Finalny gate i spójność (S)
+## Unit 4: Finalny gate i spójność (S) ✅
 
-- [ ] Weryfikuj brak martwego kodu/importów po usunięciu `data/gallery.ts`
-- [ ] Uruchom `pnpm test:int` → typecheck → `pnpm lint`
-- [ ] Uruchom `pnpm generate:types` i `pnpm build`
-- [ ] Test: [Unit] cały `test:int` zielony
-- [ ] Test: [E2E] smoke `/galeria`, `/krok-po-kroku`, `/kontakt` renderują bez błędów
-- [ ] Weryfikacja: 0 błędów typecheck/lint (brak nowych warningów), `build` exit 0, brak `any`/`!` w nowym kodzie
+- [x] Weryfikuj brak martwego kodu/importów po usunięciu `data/gallery.ts` (grep `@/data/gallery|imageUrl|.ratio` czysty)
+- [x] Uruchom `pnpm test:int` → typecheck → `pnpm lint` (13/13, 0 błędów, 0 błędów)
+- [x] Uruchom `pnpm generate:types` i `pnpm build` (build exit 0, 24 strony)
+- [x] Test: [Unit] cały `test:int` zielony — 13/13
+- [ ] Test: [E2E] smoke `/galeria`, `/krok-po-kroku`, `/kontakt` renderują bez błędów (dev-docs-review; build SSG przeszedł)
+- [x] Weryfikacja: 0 błędów typecheck/lint (5 pre-existing warningów, brak nowych), `build` exit 0, brak `any`/`!` w nowym kodzie
 
 ## Źródła
 - Requirements doc: docs/dev-brainstorms/2026-05-30-cms-pelna-kontrola-galeria-lightbox-requirements.md
