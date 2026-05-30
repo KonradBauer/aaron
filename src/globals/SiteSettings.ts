@@ -36,8 +36,6 @@ export const SiteSettings: GlobalConfig = {
       name: 'locations',
       type: 'array',
       label: 'Lokalizacje',
-      minRows: 1,
-      maxRows: 2,
       defaultValue: [
         {
           label: 'Lokalizacja 1',

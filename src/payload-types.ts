@@ -471,7 +471,7 @@ export interface Galeria {
   };
   footerNote?: string | null;
   /**
-   * Wgraj zdjęcie do każdego kafelka. Puste = zostaje zdjęcie domyślne.
+   * Dodaj dowolną liczbę zdjęć. Galeria pokazuje tylko zdjęcia tutaj wgrane.
    */
   images?:
     | {

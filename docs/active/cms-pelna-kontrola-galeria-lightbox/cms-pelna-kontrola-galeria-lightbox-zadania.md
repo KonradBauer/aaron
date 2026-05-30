@@ -7,19 +7,19 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 
 ---
 
-## Unit 1: Odblokowanie liczności w globalach + pusta galeria (M)
+## Unit 1: Odblokowanie liczności w globalach + pusta galeria (M) ✅
 
-- [ ] Modyfikuj `src/globals/GaleriaPage.ts`: usuń `minRows`/`maxRows`; `defaultValue: []`; usuń import `galleryItems`/`IMAGES_DEFAULT`; zaktualizuj `admin.description` („Dodaj dowolną liczbę zdjęć.")
-- [ ] Modyfikuj `src/globals/KrokPoKrokuPage.ts`: usuń `minRows`/`maxRows`
-- [ ] Modyfikuj `src/globals/SiteSettings.ts`: usuń `minRows`/`maxRows` w `locations`
-- [ ] Sprawdź/zmodyfikuj `src/app/(frontend)/krok-po-kroku/page.tsx` jeśli zakłada 7 kroków
-- [ ] Uruchom `pnpm generate:types`
-- [ ] Test: [E2E] `/admin` → „Galeria": dodanie i usunięcie pozycji zdjęcia działa (brak blokady wierszy)
-- [ ] Test: [E2E] `/admin` → „Krok po kroku": dodanie 8. kroku zapisuje się; `/krok-po-kroku` pokazuje „08"
-- [ ] Test: [E2E] `/admin` → „Kontakt": dodanie 3. lokalizacji zapisuje się; `/kontakt` renderuje 3 karty
-- [ ] Weryfikacja: brak blokady add/remove dla galerii, kroków, lokalizacji
-- [ ] Weryfikacja: `payload-types.ts` zregenerowane bez błędów; typecheck czysty
-- [ ] Weryfikacja: front „Krok po kroku" poprawne numery dla liczby ≠ 7
+- [x] Modyfikuj `src/globals/GaleriaPage.ts`: usuń `minRows`/`maxRows`; `defaultValue: []`; usuń import `galleryItems`/`IMAGES_DEFAULT`; zaktualizuj `admin.description` („Dodaj dowolną liczbę zdjęć.")
+- [x] Modyfikuj `src/globals/KrokPoKrokuPage.ts`: usuń `minRows`/`maxRows`
+- [x] Modyfikuj `src/globals/SiteSettings.ts`: usuń `minRows`/`maxRows` w `locations`
+- [x] Sprawdź/zmodyfikuj `src/app/(frontend)/krok-po-kroku/page.tsx` jeśli zakłada 7 kroków → front już używa `i + 1` (indeks), bez zmian
+- [x] Uruchom `pnpm generate:types`
+- [ ] Test: [E2E] `/admin` → „Galeria": dodanie i usunięcie pozycji zdjęcia działa (brak blokady wierszy) (dev-docs-review)
+- [ ] Test: [E2E] `/admin` → „Krok po kroku": dodanie 8. kroku zapisuje się; `/krok-po-kroku` pokazuje „08" (dev-docs-review)
+- [ ] Test: [E2E] `/admin` → „Kontakt": dodanie 3. lokalizacji zapisuje się; `/kontakt` renderuje 3 karty (dev-docs-review)
+- [ ] Weryfikacja: brak blokady add/remove dla galerii, kroków, lokalizacji (dev-docs-review)
+- [x] Weryfikacja: `payload-types.ts` zregenerowane bez błędów; typecheck czysty
+- [x] Weryfikacja: front „Krok po kroku" poprawne numery dla liczby ≠ 7 (numer z indeksu `i + 1`)
 
 ## Unit 2: Warstwa danych galerii — dynamiczna, z wymiarami, bez fallbacków (M)
 

@@ -1,10 +1,6 @@
 import type { GlobalConfig } from 'payload'
 import { revalidatePath } from 'next/cache'
 
-import { galleryItems } from '@/data/gallery'
-
-const IMAGES_DEFAULT = galleryItems.map((g) => ({ alt: g.alt }))
-
 export const GaleriaPage: GlobalConfig = {
   slug: 'galeria',
   label: 'Galeria',
@@ -53,12 +49,9 @@ export const GaleriaPage: GlobalConfig = {
       type: 'array',
       label: 'Zdjęcia',
       labels: { singular: 'Zdjęcie', plural: 'Zdjęcia' },
-      // Stały zestaw 12 kafelków (układ siatki w kodzie).
-      minRows: IMAGES_DEFAULT.length,
-      maxRows: IMAGES_DEFAULT.length,
-      defaultValue: IMAGES_DEFAULT,
+      defaultValue: [],
       admin: {
-        description: 'Wgraj zdjęcie do każdego kafelka. Puste = zostaje zdjęcie domyślne.',
+        description: 'Dodaj dowolną liczbę zdjęć. Galeria pokazuje tylko zdjęcia tutaj wgrane.',
       },
       fields: [
         {

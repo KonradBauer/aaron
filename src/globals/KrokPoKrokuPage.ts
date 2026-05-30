@@ -46,8 +46,6 @@ export const KrokPoKrokuPage: GlobalConfig = {
       type: 'array',
       label: 'Kroki',
       labels: { singular: 'Krok', plural: 'Kroki' },
-      minRows: processSteps.length,
-      maxRows: processSteps.length,
       defaultValue: processSteps,
       admin: {
         description: 'Numery kroków (01, 02, …) nadawane są automatycznie według kolejności.',

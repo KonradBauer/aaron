@@ -3,6 +3,10 @@
 Branch: `feature/edytowalne-tresci-podstron`
 Ostatnia aktualizacja: 2026-05-30
 
+## Postęp
+
+- **Unit 1 ✅** (2026-05-30): usunięto `minRows`/`maxRows` w `GaleriaPage` (+ `defaultValue: []`, usunięto import `galleryItems`/`IMAGES_DEFAULT`, nowy opis), `KrokPoKrokuPage`, `SiteSettings.locations`. Front „Krok po kroku" już numeruje z indeksu (`i + 1`) — bez zmian. `generate:types` + typecheck czyste. `data/gallery.ts` wciąż istnieje (usuwany w Unit 2; `lib/galeria.ts` nadal go importuje).
+
 ## Powiązane pliki
 
 - `src/globals/GaleriaPage.ts` — `images` array, `minRows/maxRows = IMAGES_DEFAULT.length`, `defaultValue: IMAGES_DEFAULT`. → usunąć limity, `defaultValue: []`, usunąć import `galleryItems`.
