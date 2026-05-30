@@ -1,14 +1,14 @@
 import { cache } from 'react'
 
-import { galleryItems } from '@/data/gallery'
-import { resolveMediaUrl } from '@/lib/media'
+import { resolveMediaWithSize } from '@/lib/media'
 import { fetchGlobal } from '@/lib/payload-global'
 import type { Galeria } from '@/payload-types'
 
 export interface GalleryImage {
-  imageUrl: string
+  url: string
   alt: string
-  ratio: string
+  width: number
+  height: number
 }
 
 const FALLBACK: Galeria = {
@@ -18,7 +18,7 @@ const FALLBACK: Galeria = {
     heroSubtitle: 'Zapraszamy do zapoznania się z naszymi obiektami i wyposażeniem.',
   },
   footerNote: 'Galeria zostanie uzupełniona własnymi zdjęciami.',
-  images: galleryItems.map((g) => ({ alt: g.alt })),
+  images: [],
 }
 
 export const getGaleriaPage = cache((): Promise<Galeria> => fetchGlobal('galeria', FALLBACK))
@@ -26,13 +26,10 @@ export const getGaleriaPage = cache((): Promise<Galeria> => fetchGlobal('galeria
 export async function getGalleryImages(): Promise<GalleryImage[]> {
   const page = await getGaleriaPage()
   const items = page.images ?? []
-  // Iterujemy po stałym zestawie 12 kafelków — gwarantuje poprawne ratio i fallback per indeks.
-  return galleryItems.map((fallback, i) => {
-    const item = items[i]
-    return {
-      imageUrl: resolveMediaUrl(item?.image, fallback.imageUrl),
-      alt: item?.alt ?? fallback.alt,
-      ratio: fallback.ratio,
-    }
+  // Tylko pozycje z wgranym, populowanym obrazkiem (z wymiarami). Reszta pomijana — brak fallbacków.
+  return items.flatMap((item) => {
+    const media = resolveMediaWithSize(item.image)
+    if (!media) return []
+    return [{ url: media.url, alt: item.alt ?? media.alt, width: media.width, height: media.height }]
   })
 }

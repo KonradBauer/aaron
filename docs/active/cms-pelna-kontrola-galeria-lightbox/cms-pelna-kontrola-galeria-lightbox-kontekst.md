@@ -5,7 +5,8 @@ Ostatnia aktualizacja: 2026-05-30
 
 ## Postęp
 
-- **Unit 1 ✅** (2026-05-30): usunięto `minRows`/`maxRows` w `GaleriaPage` (+ `defaultValue: []`, usunięto import `galleryItems`/`IMAGES_DEFAULT`, nowy opis), `KrokPoKrokuPage`, `SiteSettings.locations`. Front „Krok po kroku" już numeruje z indeksu (`i + 1`) — bez zmian. `generate:types` + typecheck czyste. `data/gallery.ts` wciąż istnieje (usuwany w Unit 2; `lib/galeria.ts` nadal go importuje).
+- **Unit 1 ✅** (2026-05-30): usunięto `minRows`/`maxRows` w `GaleriaPage` (+ `defaultValue: []`, usunięto import `galleryItems`/`IMAGES_DEFAULT`, nowy opis), `KrokPoKrokuPage`, `SiteSettings.locations`. Front „Krok po kroku" już numeruje z indeksu (`i + 1`) — bez zmian. `generate:types` + typecheck czyste.
+- **Unit 2 ✅** (2026-05-30): `media.ts` — dodano `resolveMediaWithSize()` (+ interfejs `ResolvedMedia`). `galeria.ts` — `getGalleryImages` przepisane na `flatMap` po `page.images`, tylko populowane obrazki z wymiarami, `GalleryImage = {url, alt, width, height}`, FALLBACK `images: []`. Usunięto `src/data/gallery.ts`. Test `galeria.int.spec.ts` (mock `fetchGlobal`; uwaga: `getGaleriaPage` owinięte react `cache()` → `getGalleryImages` wołane raz na plik). 13/13 zielone. **Uwaga dla Unit 3:** `GalleryImage` zmienił kształt (`url` zamiast `imageUrl`, doszły `width/height`, brak `ratio`) — `galeria/page.tsx` jeszcze używa starego (`imageUrl`/`ratio`) → naprawiane w Unit 3.
 
 ## Powiązane pliki
 

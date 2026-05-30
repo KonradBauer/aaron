@@ -21,17 +21,17 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [x] Weryfikacja: `payload-types.ts` zregenerowane bez błędów; typecheck czysty
 - [x] Weryfikacja: front „Krok po kroku" poprawne numery dla liczby ≠ 7 (numer z indeksu `i + 1`)
 
-## Unit 2: Warstwa danych galerii — dynamiczna, z wymiarami, bez fallbacków (M)
+## Unit 2: Warstwa danych galerii — dynamiczna, z wymiarami, bez fallbacków (M) ✅
 
-- [ ] Modyfikuj `src/lib/galeria.ts`: przepisz `getGalleryImages` (iteruj `page.images`, tylko populowane `image`, zwróć `{ url, alt, width, height }`); `FALLBACK.images = []`; usuń import `galleryItems`
-- [ ] Modyfikuj `src/lib/media.ts`: helper wymiarów (np. `resolveMediaWithSize`) lub mapper lokalny w `galeria.ts`
-- [ ] Usuń `src/data/gallery.ts`
-- [ ] Stwórz `tests/int/galeria.int.spec.ts`
-- [ ] Test: [Unit] 3 pozycje (2 z obrazkiem, 1 pusta) → zwraca 2 z `url/width/height`
-- [ ] Test: [Unit] pozycja z `image` jako string/niepopulowane → pominięta
-- [ ] Test: [Unit] brak zdjęć → `[]`
-- [ ] Weryfikacja: `pnpm test:int` zielony dla nowego pliku
-- [ ] Weryfikacja: brak importów `@/data/gallery` w repo (grep czysty); typecheck czysty
+- [x] Modyfikuj `src/lib/galeria.ts`: przepisz `getGalleryImages` (iteruj `page.images`, tylko populowane `image`, `flatMap` → `{ url, alt, width, height }`); `FALLBACK.images = []`; usuń import `galleryItems`
+- [x] Modyfikuj `src/lib/media.ts`: dodano `resolveMediaWithSize(field)` → `ResolvedMedia | null` (url+width+height+alt)
+- [x] Usuń `src/data/gallery.ts`
+- [x] Stwórz `tests/int/galeria.int.spec.ts`
+- [x] Test: [Unit] dataset (2 z obrazkiem, string, null, bez-wymiarów) → zwraca 2 z `url/width/height`
+- [x] Test: [Unit] pozycja z `image` jako string/niepopulowane → pominięta (`resolveMediaWithSize` → null)
+- [x] Test: [Unit] brak zdjęć → `[]` (FALLBACK + flatMap)
+- [x] Weryfikacja: `pnpm test:int` zielony — 13/13 (galeria 7 nowych)
+- [x] Weryfikacja: brak importów `@/data/gallery` w repo (grep czysty); typecheck czysty
 
 ## Unit 3: Galeria masonry + lightbox (komponent kliencki) (L)
 
