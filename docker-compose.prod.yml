@@ -13,6 +13,8 @@ services:
       # Runtime serverURL — runner stage nie dziedziczy ENV z build stage,
       # a build arg nie trafia do runtime. Bez tego serverURL='' w runtime.
       NEXT_PUBLIC_SERVER_URL: http://157.173.96.140:8976
+    volumes:
+      - media_data:/app/public/media
     depends_on:
       mongo:
         condition: service_healthy
@@ -31,3 +33,4 @@ services:
 
 volumes:
   mongo_data:
+  media_data:
