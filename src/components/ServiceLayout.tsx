@@ -2,9 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import PageHero from '@/components/PageHero'
-
-const PHONE = '+48 000 000 000'
-const PHONE_HREF = 'tel:+48000000000'
+import { getSiteSettings, phoneHref } from '@/lib/site-settings'
 
 interface Props {
   title: string
@@ -13,7 +11,11 @@ interface Props {
   imageUrl?: string
 }
 
-export default function ServiceLayout({ title, description, features, imageUrl }: Props) {
+export default async function ServiceLayout({ title, description, features, imageUrl }: Props) {
+  const settings = await getSiteSettings()
+  const PHONE = settings.phone ?? '+48 000 000 000'
+  const PHONE_HREF = phoneHref(PHONE)
+
   return (
     <>
       <PageHero

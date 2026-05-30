@@ -89,9 +89,21 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
+    'strona-glowna': StronaGlowna;
+    oferta: Oferta;
+    galeria: Galeria;
+    'krok-po-kroku': KrokPoKroku;
+    tanatokosmetyka: Tanatokosmetyka;
+    'zasilek-pogrzebowy': ZasilekPogrzebowy;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'strona-glowna': StronaGlownaSelect<false> | StronaGlownaSelect<true>;
+    oferta: OfertaSelect<false> | OfertaSelect<true>;
+    galeria: GaleriaSelect<false> | GaleriaSelect<true>;
+    'krok-po-kroku': KrokPoKrokuSelect<false> | KrokPoKrokuSelect<true>;
+    tanatokosmetyka: TanatokosmetykaSelect<false> | TanatokosmetykaSelect<true>;
+    'zasilek-pogrzebowy': ZasilekPogrzebowySelect<false> | ZasilekPogrzebowySelect<true>;
   };
   locale: null;
   widgets: {
@@ -152,6 +164,9 @@ export interface User {
  */
 export interface Media {
   id: string;
+  /**
+   * Krótki opis tego, co przedstawia zdjęcie — dla czytników ekranu i SEO.
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -341,14 +356,245 @@ export interface SiteSetting {
          */
         phone?: string | null;
         hours?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "strona-glowna".
+ */
+export interface StronaGlowna {
+  id: string;
+  hero?: {
+    badge?: string | null;
+    titleLine1?: string | null;
+    titleLine2?: string | null;
+    subtitle?: string | null;
+    /**
+     * Duże zdjęcie w tle sekcji głównej. Puste = zostaje zdjęcie domyślne.
+     */
+    image?: (string | null) | Media;
+    ctaPrimaryLabel?: string | null;
+    ctaSecondaryLabel?: string | null;
+  };
+  about?: {
+    label?: string | null;
+    heading?: string | null;
+    paragraphs?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    bullets?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+    ctaLabel?: string | null;
+    /**
+     * Zdjęcie obok tekstu. Puste = zostaje zdjęcie domyślne.
+     */
+    image?: (string | null) | Media;
+  };
+  /**
+   * Same karty usług pochodzą z zakładki „Oferta (usługi)".
+   */
+  servicesSection?: {
+    label?: string | null;
+    heading?: string | null;
+    subtitle?: string | null;
+  };
+  cta?: {
+    heading?: string | null;
+    text?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oferta".
+ */
+export interface Oferta {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  /**
+   * Edytuj treść istniejących usług. Liczba usług i ich adresy URL są stałe.
+   */
+  services?:
+    | {
         /**
-         * Np. 52.2297 — skopiuj z Google Maps (prawy klik → "Co tu jest?")
+         * Stała część adresu /oferta/… — nieedytowalna.
          */
-        lat?: number | null;
+        slug: string;
+        title: string;
+        shortDesc: string;
+        description?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
+        features?:
+          | {
+              text: string;
+              id?: string | null;
+            }[]
+          | null;
         /**
-         * Np. 21.0122
+         * Puste = zostaje zdjęcie domyślne.
          */
-        lng?: number | null;
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galeria".
+ */
+export interface Galeria {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  footerNote?: string | null;
+  /**
+   * Dodaj dowolną liczbę zdjęć. Galeria pokazuje tylko zdjęcia tutaj wgrane.
+   */
+  images?:
+    | {
+        image?: (string | null) | Media;
+        alt: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "krok-po-kroku".
+ */
+export interface KrokPoKroku {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  /**
+   * Numery kroków (01, 02, …) nadawane są automatycznie według kolejności.
+   */
+  steps?:
+    | {
+        title: string;
+        desc: string;
+        id?: string | null;
+      }[]
+    | null;
+  sidebar?: {
+    reminderLabel?: string | null;
+    reminderHeading?: string | null;
+    reminderText?: string | null;
+    zasilekLabel?: string | null;
+    zasilekText?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tanatokosmetyka".
+ */
+export interface Tanatokosmetyka {
+  id: string;
+  title?: string | null;
+  /**
+   * Puste = zostaje zdjęcie domyślne.
+   */
+  image?: (string | null) | Media;
+  description?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "zasilek-pogrzebowy".
+ */
+export interface ZasilekPogrzebowy {
+  id: string;
+  intro?: {
+    heroTitle?: string | null;
+    heroSubtitle?: string | null;
+  };
+  whatIs?: {
+    label?: string | null;
+    heading?: string | null;
+    text?: string | null;
+  };
+  whoQualifies?: {
+    heading?: string | null;
+    intro?: string | null;
+    bullets?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  amount?: {
+    heading?: string | null;
+    amountLabel?: string | null;
+    amountValue?: string | null;
+    amountNote?: string | null;
+    text?: string | null;
+  };
+  documents?: {
+    heading?: string | null;
+    bullets?:
+      | {
+          text: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  deadline?: {
+    heading?: string | null;
+    text?: string | null;
+  };
+  ctaBox?: {
+    heading?: string | null;
+    text?: string | null;
+  };
+  /**
+   * Niewidoczne na stronie — używane przez Google (dane strukturalne FAQ). Trzymaj zgodne z treścią powyżej.
+   */
+  faq?:
+    | {
+        question: string;
+        answer: string;
         id?: string | null;
       }[]
     | null;
@@ -371,8 +617,245 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         city?: T;
         phone?: T;
         hours?: T;
-        lat?: T;
-        lng?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "strona-glowna_select".
+ */
+export interface StronaGlownaSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        badge?: T;
+        titleLine1?: T;
+        titleLine2?: T;
+        subtitle?: T;
+        image?: T;
+        ctaPrimaryLabel?: T;
+        ctaSecondaryLabel?: T;
+      };
+  about?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        paragraphs?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        bullets?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        ctaLabel?: T;
+        image?: T;
+      };
+  servicesSection?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        subtitle?: T;
+      };
+  cta?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "oferta_select".
+ */
+export interface OfertaSelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  services?:
+    | T
+    | {
+        slug?: T;
+        title?: T;
+        shortDesc?: T;
+        description?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        features?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "galeria_select".
+ */
+export interface GaleriaSelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  footerNote?: T;
+  images?:
+    | T
+    | {
+        image?: T;
+        alt?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "krok-po-kroku_select".
+ */
+export interface KrokPoKrokuSelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  steps?:
+    | T
+    | {
+        title?: T;
+        desc?: T;
+        id?: T;
+      };
+  sidebar?:
+    | T
+    | {
+        reminderLabel?: T;
+        reminderHeading?: T;
+        reminderText?: T;
+        zasilekLabel?: T;
+        zasilekText?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tanatokosmetyka_select".
+ */
+export interface TanatokosmetykaSelect<T extends boolean = true> {
+  title?: T;
+  image?: T;
+  description?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "zasilek-pogrzebowy_select".
+ */
+export interface ZasilekPogrzebowySelect<T extends boolean = true> {
+  intro?:
+    | T
+    | {
+        heroTitle?: T;
+        heroSubtitle?: T;
+      };
+  whatIs?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        text?: T;
+      };
+  whoQualifies?:
+    | T
+    | {
+        heading?: T;
+        intro?: T;
+        bullets?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  amount?:
+    | T
+    | {
+        heading?: T;
+        amountLabel?: T;
+        amountValue?: T;
+        amountNote?: T;
+        text?: T;
+      };
+  documents?:
+    | T
+    | {
+        heading?: T;
+        bullets?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  deadline?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+      };
+  ctaBox?:
+    | T
+    | {
+        heading?: T;
+        text?: T;
+      };
+  faq?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   updatedAt?: T;

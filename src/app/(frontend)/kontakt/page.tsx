@@ -32,7 +32,7 @@ export default async function KontaktPage() {
         {/* Locations */}
         <div className="grid grid-cols-2 max-[900px]:grid-cols-1 gap-8 mb-[var(--section-v)]">
           {locations.map((loc) => {
-            const embedUrl = mapEmbedUrl(loc.lat, loc.lng)
+            const embedUrl = mapEmbedUrl(loc)
             const locPhone = loc.phone || phone
             const locPhoneHref = phoneHref(locPhone)
 
@@ -72,7 +72,7 @@ export default async function KontaktPage() {
                   />
                 ) : (
                   <div className="bg-green aspect-[16/7] flex items-center justify-center text-cream/40 text-[0.75rem] tracking-[0.15em] uppercase">
-                    Mapa — podaj współrzędne GPS w panelu CMS
+                    Mapa — uzupełnij adres oddziału w panelu CMS
                   </div>
                 )}
               </div>

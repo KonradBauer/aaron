@@ -36,8 +36,6 @@ export const SiteSettings: GlobalConfig = {
       name: 'locations',
       type: 'array',
       label: 'Lokalizacje',
-      minRows: 1,
-      maxRows: 2,
       defaultValue: [
         {
           label: 'Lokalizacja 1',
@@ -46,8 +44,6 @@ export const SiteSettings: GlobalConfig = {
           postalCode: '00-000',
           city: 'Miasto',
           hours: 'Dostępni 24h / 7 dni w tygodniu',
-          lat: 0,
-          lng: 0,
         },
         {
           label: 'Lokalizacja 2',
@@ -56,8 +52,6 @@ export const SiteSettings: GlobalConfig = {
           postalCode: '00-000',
           city: 'Miasto',
           hours: 'Dostępni 24h / 7 dni w tygodniu',
-          lat: 0,
-          lng: 0,
         },
       ],
       fields: [
@@ -104,31 +98,6 @@ export const SiteSettings: GlobalConfig = {
           type: 'text',
           label: 'Godziny otwarcia',
           defaultValue: 'Dostępni 24h / 7 dni w tygodniu',
-        },
-        {
-          type: 'row',
-          fields: [
-            {
-              name: 'lat',
-              type: 'number',
-              label: 'Szerokość geograficzna (lat)',
-              defaultValue: 0,
-              admin: {
-                description: 'Np. 52.2297 — skopiuj z Google Maps (prawy klik → "Co tu jest?")',
-                width: '50%',
-              },
-            },
-            {
-              name: 'lng',
-              type: 'number',
-              label: 'Długość geograficzna (lng)',
-              defaultValue: 0,
-              admin: {
-                description: 'Np. 21.0122',
-                width: '50%',
-              },
-            },
-          ],
         },
       ],
     },

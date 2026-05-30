@@ -217,6 +217,7 @@ export const services: Service[] = [
   },
 ]
 
-export function getService(slug: string): Service | undefined {
-  return services.find((s) => s.slug === slug)
-}
+// Stałe slugi = stałe trasy /oferta/[slug]. Używane przez generateStaticParams
+// (niezależne od DB w buildzie) — treść usług jest edytowalna w globalu „oferta",
+// ale ich adresy URL pozostają w kodzie.
+export const SERVICE_SLUGS = services.map((s) => s.slug)

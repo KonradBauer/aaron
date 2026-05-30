@@ -17,8 +17,6 @@ const FALLBACK: SiteSetting = {
       postalCode: '00-000',
       city: 'Miasto',
       hours: 'Dostępni 24h / 7 dni w tygodniu',
-      lat: 0,
-      lng: 0,
     },
     {
       label: 'Lokalizacja 2',
@@ -27,8 +25,6 @@ const FALLBACK: SiteSetting = {
       postalCode: '00-000',
       city: 'Miasto',
       hours: 'Dostępni 24h / 7 dni w tygodniu',
-      lat: 0,
-      lng: 0,
     },
   ],
 }
@@ -47,7 +43,11 @@ export function phoneHref(phone: string): string {
   return `tel:${phone.replace(/[\s-]/g, '')}`
 }
 
-export function mapEmbedUrl(lat: number | null | undefined, lng: number | null | undefined): string | null {
-  if (!lat || !lng || lat === 0 || lng === 0) return null
-  return `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`
+export function mapEmbedUrl(loc: Pick<Location, 'street' | 'postalCode' | 'city'>): string | null {
+  const parts = [loc.street, loc.postalCode, loc.city]
+    .map((part) => part?.trim())
+    .filter((part): part is string => Boolean(part))
+  if (parts.length === 0) return null
+  const query = encodeURIComponent(parts.join(', '))
+  return `https://maps.google.com/maps?q=${query}&z=15&output=embed`
 }

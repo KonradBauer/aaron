@@ -102,3 +102,13 @@ Or for full autopilot after `/dev-docs`:
 ```
 
 Knowledge base for past solutions: `docs/solutions/` (use `/dev-compound` to add entries).
+
+## AI Model Workflow
+
+When using the `/dev-brainstorm` skill, planning and architectural analysis should be performed assuming **Claude Opus 4.8** capabilities. However, implementation, code generation, and execution should be optimized for **Claude Sonnet 4.5**, as this is the model that will perform the actual development work.
+
+Guidelines:
+- `/dev-brainstorm` → think and plan at Opus/o4.8-level depth and quality.
+- `/dev-plan` and subsequent stages → produce artifacts that are executable by Sonnet 4.5 without requiring additional interpretation.
+- Prefer explicit implementation details, clear acceptance criteria, and concrete task breakdowns over high-level assumptions.
+- When a plan is too complex for a single implementation pass, split it into incremental milestones suitable for Sonnet 4.5 execution.
