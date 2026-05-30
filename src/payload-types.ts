@@ -356,14 +356,6 @@ export interface SiteSetting {
          */
         phone?: string | null;
         hours?: string | null;
-        /**
-         * Np. 52.2297 — skopiuj z Google Maps (prawy klik → "Co tu jest?")
-         */
-        lat?: number | null;
-        /**
-         * Np. 21.0122
-         */
-        lng?: number | null;
         id?: string | null;
       }[]
     | null;
@@ -625,8 +617,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         city?: T;
         phone?: T;
         hours?: T;
-        lat?: T;
-        lng?: T;
         id?: T;
       };
   updatedAt?: T;
