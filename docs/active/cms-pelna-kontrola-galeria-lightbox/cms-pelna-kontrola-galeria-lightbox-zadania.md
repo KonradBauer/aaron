@@ -33,19 +33,20 @@ Legenda: `Test:` = scenariusz testowy, `Weryfikacja:` = kryterium ukończenia.
 - [x] Weryfikacja: `pnpm test:int` zielony — 13/13 (galeria 7 nowych)
 - [x] Weryfikacja: brak importów `@/data/gallery` w repo (grep czysty); typecheck czysty
 
-## Unit 3: Galeria masonry + lightbox (komponent kliencki) (L)
+## Unit 3: Galeria masonry + lightbox (komponent kliencki) (L) ✅
 
-- [ ] Stwórz `src/components/Gallery.tsx` ('use client'): masonry CSS columns + lightbox
-- [ ] Modyfikuj `src/app/(frontend)/galeria/page.tsx`: render `<Gallery images={...} footerNote={...} />`
-- [ ] Lightbox: prev/next + zapętlenie, licznik „N / M", bez podpisu
-- [ ] `useEffect`: `keydown` (←/→/Esc) + `document.body.style.overflow`, cleanup obu
-- [ ] Test: [E2E] `/galeria` (≥3 zdjęcia): klik 1. kafelek → lightbox, licznik „1 / N"
-- [ ] Test: [E2E] strzałka prawo (mysz) i `→` → kolejne; z ostatniego → pierwsze (zapętlenie)
-- [ ] Test: [E2E] `Esc` oraz klik w tło → zamknięcie; scroll przywrócony
-- [ ] Test: [E2E] galeria pusta → brak kafelków, brak błędów; `footerNote` widoczny gdy ustawiony
-- [ ] Test: [E2E] różne proporcje nie są zniekształcone (masonry respektuje aspect)
-- [ ] Weryfikacja: lightbox spełnia wszystkie zachowania R4 myszą i klawiaturą
-- [ ] Weryfikacja: N wgranych zdjęć → dokładnie N na froncie; masonry bez deformacji
+- [x] Stwórz `src/components/Gallery.tsx` ('use client'): masonry CSS columns + lightbox
+- [x] Modyfikuj `src/app/(frontend)/galeria/page.tsx`: render `<Gallery images={...} footerNote={...} />`
+- [x] Lightbox: prev/next + zapętlenie (`(i±1+count)%count`), licznik „N / M", bez podpisu
+- [x] `useEffect`: `keydown` (←/→/Esc) + `document.body.style.overflow`, cleanup obu
+- [ ] Test: [E2E] `/galeria` (≥3 zdjęcia): klik 1. kafelek → lightbox, licznik „1 / N" (dev-docs-review)
+- [ ] Test: [E2E] strzałka prawo (mysz) i `→` → kolejne; z ostatniego → pierwsze (zapętlenie) (dev-docs-review)
+- [ ] Test: [E2E] `Esc` oraz klik w tło → zamknięcie; scroll przywrócony (dev-docs-review)
+- [ ] Test: [E2E] galeria pusta → brak kafelków, brak błędów; `footerNote` widoczny gdy ustawiony (dev-docs-review)
+- [ ] Test: [E2E] różne proporcje nie są zniekształcone (masonry respektuje aspect) (dev-docs-review)
+- [ ] Weryfikacja: lightbox spełnia wszystkie zachowania R4 myszą i klawiaturą (dev-docs-review)
+- [ ] Weryfikacja: N wgranych zdjęć → dokładnie N na froncie; masonry bez deformacji (dev-docs-review)
+- [x] Weryfikacja (kod): typecheck + lint czyste
 
 ## Unit 4: Finalny gate i spójność (S)
 
