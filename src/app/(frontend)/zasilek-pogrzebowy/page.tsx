@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 import JsonLd from '@/components/JsonLd'
 import PageHero from '@/components/PageHero'
 import { getSiteSettings, phoneHref } from '@/lib/site-settings'

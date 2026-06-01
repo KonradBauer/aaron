@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 import Gallery from '@/components/Gallery'
+
+export const dynamic = 'force-dynamic'
 import PageHero from '@/components/PageHero'
 import { getGaleriaPage, getGalleryImages } from '@/lib/galeria'
 

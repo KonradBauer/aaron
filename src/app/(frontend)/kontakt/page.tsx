@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 import PageHero from '@/components/PageHero'
+
+export const dynamic = 'force-dynamic'
 import { getSiteSettings, mapEmbedUrl, phoneHref } from '@/lib/site-settings'
 
 export const metadata: Metadata = {

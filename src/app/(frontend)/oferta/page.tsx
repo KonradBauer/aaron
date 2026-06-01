@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 import PageHero from '@/components/PageHero'
 import { getOfertaPage, getServicesList } from '@/lib/oferta'
 

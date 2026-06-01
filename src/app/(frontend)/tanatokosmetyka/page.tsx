@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 
 import ServiceLayout from '@/components/ServiceLayout'
+
+export const dynamic = 'force-dynamic'
 import { resolveMediaUrl } from '@/lib/media'
 import { getTanatoContent, TANATO_IMG_FALLBACK } from '@/lib/tanatokosmetyka'
 

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 import JsonLd from '@/components/JsonLd'
 import ServiceLayout from '@/components/ServiceLayout'
 import { SERVICE_SLUGS } from '@/data/services'

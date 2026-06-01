@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 import SkeletonImage from '@/components/SkeletonImage'
 
 import { getHomeContent, HERO_IMG_FALLBACK, ABOUT_IMG_FALLBACK } from '@/lib/home'

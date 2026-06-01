@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 import JsonLd from '@/components/JsonLd'
 import PageHero from '@/components/PageHero'
 import { getKrokContent } from '@/lib/krok-po-kroku'
