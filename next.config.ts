@@ -21,10 +21,7 @@ const nextConfig: NextConfig = {
     ]
   },
   images: {
-    // unoptimized: serwujemy obrazy bez optymalizacji Next (prostsze w standalone Docker).
-    // Przy unoptimized localPatterns/remotePatterns są ignorowane, więc ich nie ma.
-    // Gdyby kiedyś włączyć optymalizację — dodać remotePatterns dla images.unsplash.com.
-    unoptimized: true,
+    remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
