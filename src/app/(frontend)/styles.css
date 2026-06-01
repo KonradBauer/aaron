@@ -242,3 +242,16 @@
     --section-v-sm: 48px;
   }
 }
+
+@keyframes lightbox-slide-from-right {
+  from { transform: translateX(56px); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes lightbox-slide-from-left {
+  from { transform: translateX(-56px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+.lightbox-slide-next { animation: lightbox-slide-from-right 0.32s ease-out forwards; }
+.lightbox-slide-prev { animation: lightbox-slide-from-left  0.32s ease-out forwards; }

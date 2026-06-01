@@ -11,20 +11,20 @@ export default function SkeletonImage({ className, alt, onLoad: onLoadProp, ...p
 
   return (
     <>
-      <span
-        aria-hidden="true"
-        className={`absolute inset-0 bg-surface transition-opacity duration-500 ${
-          loaded ? 'opacity-0 pointer-events-none' : 'animate-pulse'
-        }`}
-      />
       <Image
         {...props}
         alt={alt}
-        className={`${className ?? ''} transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        className={className}
         onLoad={(e) => {
           setLoaded(true)
           onLoadProp?.(e)
         }}
+      />
+      <span
+        aria-hidden="true"
+        className={`absolute inset-0 bg-surface pointer-events-none transition-opacity duration-500 ${
+          loaded ? 'opacity-0' : 'animate-pulse'
+        }`}
       />
     </>
   )
