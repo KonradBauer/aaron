@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     locale: 'pl_PL',
     siteName: 'Aaron Dom Pogrzebowy',
   },
+  icons: {
+    icon: '/favicon.png',
+  },
   robots: {
     index: true,
     follow: true,

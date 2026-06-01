@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
+
+import SkeletonImage from '@/components/SkeletonImage'
 
 import { getHomeContent, HERO_IMG_FALLBACK, ABOUT_IMG_FALLBACK } from '@/lib/home'
 import { resolveMediaUrl } from '@/lib/media'
@@ -35,7 +36,7 @@ export default async function HomePage() {
     <>
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-label="Sekcja główna">
-        <Image
+        <SkeletonImage
           src={heroImg}
           alt="Aaron Dom Pogrzebowy — sala pożegnań"
           fill
@@ -91,7 +92,7 @@ export default async function HomePage() {
 
           {/* About image */}
           <div className="relative aspect-[4/5] max-[900px]:aspect-video overflow-hidden">
-            <Image
+            <SkeletonImage
               src={aboutImg}
               alt="Kwiaty - Aaron Dom Pogrzebowy"
               fill

@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import Link from 'next/link'
+
+import SkeletonImage from '@/components/SkeletonImage'
 
 import PageHero from '@/components/PageHero'
 import { getSiteSettings, phoneHref } from '@/lib/site-settings'
@@ -28,7 +29,7 @@ export default async function ServiceLayout({ title, description, features, imag
         <div className="flex flex-col gap-6">
           <div className="aspect-video relative overflow-hidden">
             {imageUrl ? (
-              <Image
+              <SkeletonImage
                 src={imageUrl}
                 alt={title}
                 fill

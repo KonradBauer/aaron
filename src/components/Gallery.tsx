@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
+import SkeletonImage from '@/components/SkeletonImage'
+
 import type { GalleryImage } from '@/lib/galeria'
 
 interface Props {
@@ -61,14 +63,15 @@ export default function Gallery({ images, footerNote }: Props) {
             type="button"
             onClick={() => setOpenIndex(i)}
             className="block w-full mb-1 break-inside-avoid relative overflow-hidden group cursor-pointer"
+            style={{ aspectRatio: `${img.width}/${img.height}` }}
             aria-label={`Powiększ zdjęcie: ${img.alt}`}
           >
-            <Image
+            <SkeletonImage
               src={img.url}
               alt={img.alt}
               width={img.width}
               height={img.height}
-              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-auto object-cover transition-[transform,opacity] duration-500 group-hover:scale-105"
               sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
             />
             <span className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
